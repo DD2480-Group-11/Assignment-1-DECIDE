@@ -10,7 +10,7 @@ import decide.launch.LaunchOutput;
 public class App {
     
     public static void main(String[] args) {
-        LaunchInput input = null;   // temp value
+        LaunchInput input = new LaunchInput(null, null, null, null);   // temp value
         LaunchOutput output = Launch.decide(input);
     }
 }
