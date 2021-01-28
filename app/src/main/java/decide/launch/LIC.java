@@ -1,5 +1,6 @@
 package decide.launch;
 
+// conditions are used to calculate the CMV
 public final class LIC {
 
     private static boolean isCondition0() {
