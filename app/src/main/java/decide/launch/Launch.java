@@ -8,9 +8,9 @@ public class Launch {
     // returns output as according to specification
     public static LaunchOutput decide(LaunchInput input) {
 
-        boolean[] cmv = calculateCMV();
-        boolean[][] pum = calculatePUM();
-        boolean[] fuv = calculateFUV();
+        boolean[] cmv = calculateCMV(input.getParams());
+        boolean[][] pum = calculatePUM(cmv, input.getLCM());
+        boolean[] fuv = calculateFUV(pum);
 
         LaunchOutput output = new LaunchOutput(cmv, pum, fuv);
 
@@ -22,23 +22,23 @@ public class Launch {
     }
 
     //uses conditions in LIC class
-    private static boolean[] calculateCMV() {
-        // TODO: add appropriate method parameters
+    private static boolean[] calculateCMV(Parameters params) {
+        // TODO
         return null;
     }
 
-    private static boolean[][] calculatePUM() {
-        // TODO: add appropriate method parameters
+    private static boolean[][] calculatePUM(boolean[] cmv, Connectors[][] lcm) {
+        // TODO
         return null;
     }
 
-    private static boolean[] calculateFUV() {
-        // TODO: add appropriate method parameters
+    private static boolean[] calculateFUV(boolean[][] pum) {
+        // TODO
         return null;
     }
 
     private static boolean shouldLaunch(boolean[] fuv) {
-        // TODO: add appropriate method parameters
+        // TODO
         return false;
     }
 }
