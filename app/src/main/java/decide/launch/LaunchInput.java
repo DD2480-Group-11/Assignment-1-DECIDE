@@ -9,7 +9,7 @@ public final class LaunchInput {
     private final Connectors[][] lcm;
     private final boolean[] puv;
 
-    public LaunchInput(Point[] points,
+    public LaunchInput( Point[] points,
                         Parameters params,
                         Connectors[][] lcm,
                         boolean[] puv) {
