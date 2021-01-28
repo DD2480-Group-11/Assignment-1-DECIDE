@@ -1,6 +1,7 @@
 package decide.launch;
 
 // immutable class
+// member variables represent the output variables of the decide function
 public final class LaunchOutput {
     private final boolean[] cmv;
     private final boolean[][] pum;
