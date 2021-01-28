@@ -3,12 +3,14 @@
  */
 package decide;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import decide.launch.Launch;
+import decide.launch.LaunchInput;
+import decide.launch.LaunchOutput;
 
+public class App {
+    
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        LaunchInput input = null;   // temp value
+        LaunchOutput output = Launch.decide(input);
     }
 }
