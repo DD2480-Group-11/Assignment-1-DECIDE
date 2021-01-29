@@ -22,6 +22,28 @@ public final class Parameters {
     public final double radius2; // max radius in LIC 13
     public final double area2;   // max area in LIC 14
 
+    //constructor overloading:
+    public Parameters(double area1){
+        this.length1 = 0;
+        this.radius1 = 0;
+        this.epsilon = 0;
+        this.area1 = area1;
+        this.qPts = 0;
+        this.quads = 0;
+        this.dist = 0;
+        this.nPts =0;
+        this.kPts = 0;
+        this.aPts = 0;
+        this.bPts = 0;
+        this.cPts = 0;
+        this.dPts = 0;
+        this.ePts = 0;
+        this.fPts = 0;
+        this.gPts = 0;
+        this.length2 = 0;
+        this.radius2 = 0;
+        this.area2 = 0;        
+    }
     public Parameters(  double length1, 
                         double radius1,
                         double epsilon, 
@@ -62,4 +84,5 @@ public final class Parameters {
         this.radius2 = radius2;
         this.area2 = area2;
     }
+    
 }

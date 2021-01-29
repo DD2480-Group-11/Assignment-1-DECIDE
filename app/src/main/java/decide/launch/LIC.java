@@ -1,8 +1,9 @@
 package decide.launch;
+import decide.utils.*;
+
 
 // conditions are used to calculate the CMV
 public final class LIC {
-
     private static boolean isCondition0() {
         // TODO: add appropriate method parameters
         return false;
@@ -18,10 +19,19 @@ public final class LIC {
         return false;
     }
 
-    private static boolean isCondition3() {
+    public static boolean isCondition3(Parameters params,Point[] points) {
         // TODO: add appropriate method parameters
+        double area;
+
+        for(int i=0;i<points.length-2;i++){
+            area = MathUtils.calculateArea(points[i],points[i+1],points[i+2]);
+                if(area > params.area1)
+                    return true;         
+            } 
         return false;
     }
+
+
 
     private static boolean isCondition4() {
         // TODO: add appropriate method parameters
