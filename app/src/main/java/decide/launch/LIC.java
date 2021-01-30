@@ -1,10 +1,16 @@
 package decide.launch;
 
 import decide.utils.Point;
+import java.lang.Math;
 
 // conditions are used to calculate the CMV
 public final class LIC {
 
+    /**
+     * @param points array of two dimensional points
+     * @param length value that distance between points are checked against
+     * @return true if LIC 0 is satisfied
+     */
     public static boolean isCondition0(Point[] points, double length) {
 
         if(length <= 0.0) 
@@ -27,8 +33,29 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition2() {
-        // TODO: add appropriate method parameters
+    /**
+     * @param points array of two dimensional points
+     * @param epsilon deviation from pi
+     * @return true if LIC 2 is satisfied
+     */
+    public static boolean isCondition2(Point[] points, double epsilon) {
+
+        if(epsilon < 0 || epsilon >= Math.PI)
+            return false;
+
+        for(int i = 0; i + 2 <= points.length-1; i++) {
+            Point a = points[i];
+            Point vertex = points[i+1];
+            Point b = points[i+2];
+
+            if(Point.isEqual(a, vertex) || Point.isEqual(b, vertex))    // angle is undefined
+                return false;
+
+            double angle = Point.calculateAngle(a, vertex, b);
+            if((angle < (Math.PI - epsilon)) || (angle > (Math.PI + epsilon)))
+                return true;
+        }
+
         return false;
     }
 
