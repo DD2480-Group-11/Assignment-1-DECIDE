@@ -4,18 +4,18 @@ import decide.utils.Point;
 
 // immutable class containing the input variables for "decide" function
 public final class LaunchInput {
-    public final Point[] points;
-    public final Parameters params;
-    public final Connectors[][] lcm;
-    public final boolean[] puv;
+    public final Point[] POINTS;
+    public final Parameters PARAMS;
+    public final Connectors[][] LCM;
+    public final boolean[] PUV;
 
-    public LaunchInput( Point[] points,
-                        Parameters params,
-                        Connectors[][] lcm,
-                        boolean[] puv) {
-        this.points = points;
-        this.params = params;
-        this.lcm = lcm;
-        this.puv = puv;
+    public LaunchInput( Point[] POINTS,
+                        Parameters PARAMS,
+                        Connectors[][] LCM,
+                        boolean[] PUV) {
+        this.POINTS = POINTS;
+        this.PARAMS = PARAMS;
+        this.LCM = LCM;
+        this.PUV = PUV;
     }
 }

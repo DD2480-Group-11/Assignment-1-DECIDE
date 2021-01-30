@@ -8,8 +8,8 @@ public class Launch {
     // returns output as according to specification
     public static LaunchOutput decide(LaunchInput input) {
 
-        boolean[] cmv = calculateCMV(input.params);
-        boolean[][] pum = calculatePUM(cmv, input.lcm);
+        boolean[] cmv = calculateCMV(input.PARAMS);
+        boolean[][] pum = calculatePUM(cmv, input.LCM);
         boolean[] fuv = calculateFUV(pum);
 
         LaunchOutput output = new LaunchOutput(cmv, pum, fuv);

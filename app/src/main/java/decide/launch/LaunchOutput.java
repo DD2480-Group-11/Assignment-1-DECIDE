@@ -3,15 +3,15 @@ package decide.launch;
 // immutable class
 // member variables represent the output variables of the decide function
 public final class LaunchOutput {
-    private final boolean[] cmv;
-    private final boolean[][] pum;
-    private final boolean[] fuv;
+    private final boolean[] CMV;
+    private final boolean[][] PUM;
+    private final boolean[] FUV;
 
-    public LaunchOutput(boolean[] cmv,
-                        boolean[][] pum,
-                        boolean[] fuv) {
-        this.cmv = cmv;
-        this.pum = pum;
-        this.fuv = fuv;
+    public LaunchOutput(boolean[] CMV,
+                        boolean[][] PUM,
+                        boolean[] FUV) {
+        this.CMV = CMV;
+        this.PUM = PUM;
+        this.FUV = FUV;
     }
 }
