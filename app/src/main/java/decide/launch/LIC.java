@@ -59,8 +59,15 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition3() {
+    public static boolean isCondition3(double area1,Point[] points) {
         // TODO: add appropriate method parameters
+        double area;
+
+        for(int i=0;i<points.length-2;i++){
+            area = Point.calculateArea(points[i],points[i+1],points[i+2]);
+                if(area > area1)
+                    return true;         
+            } 
         return false;
     }
 
