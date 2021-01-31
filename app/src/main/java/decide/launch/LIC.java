@@ -128,9 +128,26 @@ public final class LIC {
         // TODO: add appropriate method parameters
         return false;
     }
-
-    public static boolean isCondition10() {
-        // TODO: add appropriate method parameters
+    /**
+     * 
+     * @param e_points one of the number of consecutive data points
+     * @param f_points another number of consecutive data points
+     * @param area1 the requirement of the area of triangle
+     * @param points the input points array
+     * @return true if LIC 10 is satisfied
+     */
+    public static boolean isCondition10(int e_points, int f_points, double area1, Point[] points) {
+        if(points.length>=5){
+            if(e_points>=1 && f_points>=1 && (e_points+f_points)<=points.length-3){
+                int end = points.length - e_points - f_points -3;
+                double area;
+                for(int i=0;i<end+1;i++){
+                    area = Point.calculateArea(points[i], points[i+e_points+1],points[i+e_points+f_points+2]);
+                    if(area > area1)
+                        return true;
+                }
+            }
+        }
         return false;
     }
 
