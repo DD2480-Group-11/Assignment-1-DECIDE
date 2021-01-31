@@ -178,6 +178,38 @@ class LICTest {
         Point[] points = {new Point(1.0, 1.0), new Point(1.2, 1.0), new Point(-2.0, 3.0)};
         assertTrue(LIC.isCondition4(3, 1, points));
     }
+    @Test
+    @DisplayName("LIC::isCondition10::condition is satisfied.")
+    /**
+     * Test if isCondition10 is true when the area meet the requirement.
+     */
+    public void testCondition10Satisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0),new Point(3.0,3.0)};
+        assertEquals(true, LIC.isCondition10(1,1,3.0,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition10::condition is not satisfied.")
+    /**
+     * Test if isCondition10 is false when the area less than the requirement.
+     */
+    public void testCondition10NotSatisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0),new Point(3.0,3.0)};
+        assertEquals(false, LIC.isCondition10(1,1,5.0,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition10::NumOfPoints less than 5.")
+    /**
+     * Test if isCondition10 is false when the number of points less than 5.
+     */
+    public void testCondition10NumNotSatisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0)};
+        assertEquals(false, LIC.isCondition10(1,1,3.0,points));
+    }
 
     @Test
     @DisplayName("LIC::isCondition9::LIC 9 fails if outside range (0 <= epsilon < pi)")
