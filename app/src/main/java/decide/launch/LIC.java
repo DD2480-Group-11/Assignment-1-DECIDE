@@ -113,9 +113,26 @@ public final class LIC {
         return false;
     }
 
+    /**
+     * @param points array of two dimensional points
+     * @param kPts separation between consecutive points
+     * @param length value that distance between points are checked against
+     * @return true if LIC 7 is satisfied
+     */
+    public static boolean isCondition7(Point[] points, int kPts, int length) {
 
-    public static boolean isCondition7() {
-        // TODO: add appropriate method parameters
+        if(kPts < 1 || kPts > points.length-2 || points.length < 3)
+            return false;
+
+        for(int i = 0; i < (points.length-1-kPts); i++) {
+            Point first = points[i];
+            Point second = points[i+kPts+1];
+            final double distBetween = Point.distBetween(first, second);
+
+            if(distBetween > length)
+                return true;
+        }
+
         return false;
     }
 
