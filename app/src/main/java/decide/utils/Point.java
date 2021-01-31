@@ -84,10 +84,12 @@ public static double calculateArea(Point a, Point b, Point c) {
     double lengthC = Point.distBetween(c, a);
     double halfPerimeter = (lengthA + lengthB + lengthC)/2.0;
     double Area3 = halfPerimeter*(halfPerimeter-lengthA)*(halfPerimeter-lengthB)*(halfPerimeter-lengthC);
+
     if(Area3<0 || Area3==0){
         return 0.0;
     }
+
     double SquareRootOfArea3 = Math.sqrt(Area3);
-    return SquareRootOfArea3;
-        }
+        return SquareRootOfArea3;
+    }
 }

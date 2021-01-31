@@ -135,7 +135,7 @@ class LICTest {
         assertFalse(result);
     }
     @Test
-    @DisplayName("LIC::isCondition3:condition is satisfied.")
+    @DisplayName("LIC::isCondition3::condition is satisfied.")
     /**
      * Test if isCondition3 is true when the area meet the requirement.
      */
@@ -146,7 +146,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition3:condition is not satisfied.")
+    @DisplayName("LIC::isCondition3::condition is not satisfied.")
     /**
      * Test if isCondition3 is false when the area less than the requirement.
      */
