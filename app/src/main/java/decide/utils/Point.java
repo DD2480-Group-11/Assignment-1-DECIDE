@@ -67,29 +67,29 @@ public final class Point {
         return false;
     }
     
-     /**
- * Function name: calculateArea
- * <p>
- * Using Heron's formula to calculate the area of triangle.
- * 
- * @param a the first point
- * @param b the second point
- * @param c the third point
- * @return the area of the triangle
- * @author Yu Zhou
- */
-public static double calculateArea(Point a, Point b, Point c) {
-    double lengthA = Point.distBetween(a, b);
-    double lengthB = Point.distBetween(b, c);
-    double lengthC = Point.distBetween(c, a);
-    double halfPerimeter = (lengthA + lengthB + lengthC)/2.0;
-    double Area3 = halfPerimeter*(halfPerimeter-lengthA)*(halfPerimeter-lengthB)*(halfPerimeter-lengthC);
+    /**
+     * Function name: calculateArea
+     * <p>
+     * Using Heron's formula to calculate the area of triangle.
+     * 
+     * @param a the first point
+     * @param b the second point
+     * @param c the third point
+     * @return the area of the triangle
+     * @author Yu Zhou
+     */
+    public static double calculateArea(Point a, Point b, Point c) {
+        double lengthA = Point.distBetween(a, b);
+        double lengthB = Point.distBetween(b, c);
+        double lengthC = Point.distBetween(c, a);
+        double halfPerimeter = (lengthA + lengthB + lengthC)/2.0;
+        double Area3 = halfPerimeter*(halfPerimeter-lengthA)*(halfPerimeter-lengthB)*(halfPerimeter-lengthC);
 
-    if(Area3<0 || Area3==0){
-        return 0.0;
-    }
+        if(Area3<0 || Area3==0){
+            return 0.0;
+        }
 
-    double SquareRootOfArea3 = Math.sqrt(Area3);
+        double SquareRootOfArea3 = Math.sqrt(Area3);
         return SquareRootOfArea3;
     }
 }
