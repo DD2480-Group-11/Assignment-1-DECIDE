@@ -18,7 +18,7 @@ public final class LIC {
         if(length <= 0.0)
             return false;
 
-        for(int i = 0; i < points.length-2; i++) {
+        for(int i = 0; i < points.length-1; i++) {
             final Point first = points[i];
             final Point second = points[i+1];
             final double distBetween = Point.distBetween(first, second);
