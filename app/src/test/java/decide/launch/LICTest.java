@@ -14,7 +14,7 @@ class LICTest {
     void testCondition0NegativeLength() {
         Point[] points = {  new Point(5.0, 5.0),
                             new Point(10.0, 10.0),
-                            new Point(20.0, 20.0),  
+                            new Point(20.0, 20.0),
                             new Point(35.5, 60.5)};
         double length = -1.0;
 
@@ -141,9 +141,9 @@ class LICTest {
      * Test if isCondition3 is true when the area meet the requirement.
      */
     public void testCondition3Satisfied(){
-        
+
         Point[] points = {new Point(1.0,1.0), new Point(5.0,1.0), new Point(3.0,3.0)};
-        assertEquals(true, LIC.isCondition3(1.0,points));        
+        assertEquals(true, LIC.isCondition3(1.0,points));
     }
 
     @Test
@@ -152,12 +152,34 @@ class LICTest {
      * Test if isCondition3 is false when the area less than the requirement.
      */
     public void testCondition3NotSatisfied(){
-        
+
         Point[] points = {new Point(1.0,1.0), new Point(5.0,1.0), new Point(3.0,3.0)};
-        assertEquals(false, LIC.isCondition3(5.0,points));        
+        assertEquals(false, LIC.isCondition3(5.0,points));
     }
 
-    //LIC 9
+    @Test
+    @DisplayName("LIC::isCondition4::LIC 4 is not satisfied.")
+    /*
+     * Tests whether isCondition4() is false when 3 consecutive points do not belong in the appropriate amount
+     * quadrants ( in this case all points are in quadrant 1, which is not more than 1 quadrant according to
+     * specification.
+     */
+    public void testCondition4NotSatisfied() {
+        Point[] points = {new Point(1.0, 1.0), new Point(1.2, 1.0), new Point(3.0, 3.0)};
+        assertEquals(false, LIC.isCondition4(3, 1, points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition4::LIC 4 is satisfied.")
+    /*
+     * Tests whether isCondition4() is true when 3 consecutive points belong in the appropriate amount
+     * quadrants (more than one quadrant in this case).
+     */
+    public void testCondition4Satisfied() {
+        Point[] points = {new Point(1.0, 1.0), new Point(1.2, 1.0), new Point(-2.0, 3.0)};
+        assertTrue(LIC.isCondition4(3, 1, points));
+    }
+
     @Test
     @DisplayName("LIC::isCondition9::LIC 9 fails if outside range (0 <= epsilon < pi)")
     //tests that isCondition9 fails if epsilon value outside of range
