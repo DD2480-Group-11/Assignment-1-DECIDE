@@ -85,13 +85,9 @@ public final class LIC {
         if (2 <= q_points && q_points <= points.length) {
             if (1 <= quads && quads <= 3) {
                 Set<Integer> set = new HashSet<>();
-                int end;
-                if (points.length == q_points) { // end is needed in this case because if qpoints== points.length
-                    end = points.length;         // then main loop does not run
-                } else {
-                    end = points.length - q_points;
-                }
-                for (int i = 0; i < end; i++) {
+                int end = points.length - q_points;
+                int i = 0;
+                do {
                     for (int j = 0; j < q_points; j++) {
                         set.add(Point.getQuadrant(points[i + j]));
                     }
@@ -100,7 +96,8 @@ public final class LIC {
                     } else {
                         set.clear();
                     }
-                }
+                    i++;
+                } while (i < end);
             }
         }
         return false;
