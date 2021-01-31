@@ -85,7 +85,7 @@ public final class LIC {
         if (2 <= q_points && q_points <= points.length) {
             if (1 <= quads && quads <= 3) {
                 Set<Integer> set = new HashSet<>();
-                int end = points.length - q_points;
+                int end = points.length - q_points + 1;
                 int i = 0;
                 do {
                     for (int j = 0; j < q_points; j++) {
