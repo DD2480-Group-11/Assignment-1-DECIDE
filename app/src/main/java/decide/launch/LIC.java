@@ -2,6 +2,8 @@ package decide.launch;
 
 import decide.utils.Point;
 import java.lang.Math;
+import java.util.HashSet;
+import java.util.Set;
 
 // conditions are used to calculate the CMV
 public final class LIC {
@@ -13,7 +15,7 @@ public final class LIC {
      */
     public static boolean isCondition0(Point[] points, double length) {
 
-        if(length <= 0.0) 
+        if(length <= 0.0)
             return false;
 
         for(int i = 0; i < points.length-2; i++) {
@@ -26,7 +28,7 @@ public final class LIC {
         }
 
         return false;
-    } 
+    }
 
     public static boolean isCondition1() {
         // TODO: add appropriate method parameters
@@ -66,13 +68,38 @@ public final class LIC {
         for(int i=0;i<points.length-2;i++) {
             area = Point.calculateArea(points[i],points[i+1],points[i+2]);
             if(area > area1)
-                return true;         
-        } 
+                return true;
+        }
         return false;
     }
 
-    public static boolean isCondition4() {
-        // TODO: add appropriate method parameters
+    /**
+     *
+     * @param q_points, number of consecutive data points
+     * @param quads, quads + 1 gives the number of consecutive quadrants with consecutive points
+     * @param points, the points
+     * @return true if there exists q_points consecutive data points such that consecutive
+     * points lie in more than @param quads quadrants, otherwise false
+     */
+    public static boolean isCondition4(int q_points, int quads, Point[] points) {
+        if (2 <= q_points && q_points <= points.length) {
+            if (1 <= quads && quads <= 3) {
+                Set<Integer> set = new HashSet<>();
+                int end = points.length - q_points;
+                int i = 0;
+                do {
+                    for (int j = 0; j < q_points; j++) {
+                        set.add(Point.getQuadrant(points[i + j]));
+                    }
+                    if (set.size() > quads) {
+                        return true;
+                    } else {
+                        set.clear();
+                    }
+                    i++;
+                } while (i < end);
+            }
+        }
         return false;
     }
 

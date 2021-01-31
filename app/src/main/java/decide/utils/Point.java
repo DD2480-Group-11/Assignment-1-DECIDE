@@ -56,7 +56,7 @@ public final class Point {
         return Math.sqrt((p.x * p.x) + (p.y * p.y));
     }
 
-    /** 
+    /**
      * @param a one of two compared two dimensional points
      * @param b one of two compared two dimensional points
      * @return true if the points have the same x and y value
@@ -66,12 +66,12 @@ public final class Point {
             return true;
         return false;
     }
-    
+
     /**
      * Function name: calculateArea
      * <p>
      * Using Heron's formula to calculate the area of triangle.
-     * 
+     *
      * @param a the first point
      * @param b the second point
      * @param c the third point
@@ -91,5 +91,22 @@ public final class Point {
 
         double SquareRootOfArea3 = Math.sqrt(Area3);
         return SquareRootOfArea3;
+    }
+
+    /**
+     * Calculates the cartesian quadrant of point p.
+     * @param p the point that should be checked
+     * @return the quadrant number, ranging from 1-4
+     */
+    public static int getQuadrant(Point p) {
+        if (p.x >= 0.0 && p.y >= 0.0) {
+            return 1;
+        } else if (p.x < 0.0 && p.y >= 0.0) {
+            return 2;
+        } else if (p.x <= 0.0 && p.y < 0.0) {
+            return 3;
+        } else {
+            return 4;
+        }
     }
 }
