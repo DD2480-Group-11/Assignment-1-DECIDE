@@ -24,7 +24,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition0::condition is satisfied.")
+    @DisplayName("LIC::isCondition0::LIC 0 is satisfied.")
     // tests that isCondition0 returns true if there are two consecutive data
     // points with a distance between eachother greater than length
     void testCondition0Satisfied() {
@@ -41,7 +41,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition0::condition is not satisfied.")
+    @DisplayName("LIC::isCondition0::LIC 0 is not satisfied.")
     // tests that isCondition0 returns false if there are not two consecutive 
     // data points with a distance between eachother greater than length
     void testCondition0NotSatisfied() {
@@ -136,7 +136,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition3::condition is satisfied.")
+    @DisplayName("LIC::isCondition3::LIC 3 is satisfied.")
     /**
      * Test if isCondition3 is true when the area meet the requirement.
      */
@@ -147,7 +147,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition3::condition is not satisfied.")
+    @DisplayName("LIC::isCondition3::LIC 3 is not satisfied.")
     /**
      * Test if isCondition3 is false when the area less than the requirement.
      */
