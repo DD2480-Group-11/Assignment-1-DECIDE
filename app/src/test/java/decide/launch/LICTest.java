@@ -134,4 +134,25 @@ class LICTest {
 
         assertFalse(result);
     }
+    @Test
+    @DisplayName("LIC::isCondition3::condition is satisfied.")
+    /**
+     * Test if isCondition3 is true when the area meet the requirement.
+     */
+    public void testCondition3Satisfied(){
+        
+        Point[] points = {new Point(1.0,1.0), new Point(5.0,1.0), new Point(3.0,3.0)};
+        assertEquals(true, LIC.isCondition3(1.0,points));        
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition3::condition is not satisfied.")
+    /**
+     * Test if isCondition3 is false when the area less than the requirement.
+     */
+    public void testCondition3NotSatisfied(){
+        
+        Point[] points = {new Point(1.0,1.0), new Point(5.0,1.0), new Point(3.0,3.0)};
+        assertEquals(false, LIC.isCondition3(5.0,points));        
+    }
 }

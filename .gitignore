@@ -31,5 +31,16 @@ build
 # IntelliJ files
 .idea
 
+# Binary files directory
+bin
+
+# .settings directory
+.settings
+
+# project file 
+.project
+
+# classfile
+.classpath
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
