@@ -178,6 +178,26 @@ class LICTest {
         Point[] points = {new Point(1.0, 1.0), new Point(1.2, 1.0), new Point(-2.0, 3.0)};
         assertTrue(LIC.isCondition4(2, 1, points));
     }
+    @Test
+    @DisplayName("LIC::isCondition5::condition is satisfied.")
+    /*
+     * Tests whether isCondition5() is true when 2 consecutive points where there is a negative difference
+     * between X[i] and X[j], j = i -1
+     * This also checks that there is no off by one error
+     */
+    public void testCondition5Satisfied() {
+        Point[] points = {new Point(4.0, 1.0), new Point(3.0, 0.0), new Point(2.0, 0.0)};
+        assertTrue(LIC.isCondition5(points));
+    }
+    @Test
+    @DisplayName("LIC::isCondition5::condition is satisfied.")
+    /*
+     * Tests whether isCondition5() is false when there are no consecutive points with negative difference
+     * between X[i] and X[j], j = i -1
+     */
+    public void testCondition5NotSatisfied() {
+        Point[] points = {new Point(1.0, 1.0), new Point(1.2, 1.0), new Point(2.0, 3.0)};
+        assertFalse(LIC.isCondition4(2, 1, points));
     }
 
 
