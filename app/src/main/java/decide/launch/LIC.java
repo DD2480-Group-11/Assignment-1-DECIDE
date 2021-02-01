@@ -179,7 +179,7 @@ public final class LIC {
             if(e_points>=1 && f_points>=1 && (e_points+f_points)<=points.length-3){
                 int end = points.length - e_points - f_points -3;
                 double area;
-                boolean flag1, flag2 = false;
+                boolean flag1 = false, flag2 = false;
                 for(int i=0;i<end+1;i++){
                     area = Point.calculateArea(points[i], points[i+e_points+1],points[i+e_points+f_points+2]);
                     if(area > area1)
