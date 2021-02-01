@@ -130,7 +130,7 @@ public final class LIC {
         //length2: the distance between two points in order to calculate the dist1;
         if(length1>=3 && dist>=0){
             if(n_points>=3 && n_points<=length1){                              
-                for(int i = 0;i < length1-n_points + 1){
+                for(int i = 0;i < length1-n_points + 1;i++){
                     if(points[i].x != points[i+n_points-1].x || points[i].y != points[i+n_points-1].y){
                         for(int j = i+1; j<=i+n_points-2; j++){                            
                             area = Point.calculateArea(points[i], points[i+n_points-1],points[j] );
