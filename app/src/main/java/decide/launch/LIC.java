@@ -85,7 +85,7 @@ public final class LIC {
         if (2 <= q_points && q_points <= points.length) {
             if (1 <= quads && quads <= 3) {
                 Set<Integer> set = new HashSet<>();
-                int end = points.length - q_points;
+                int end = points.length - q_points + 1;
                 int i = 0;
                 do {
                     for (int j = 0; j < q_points; j++) {
@@ -103,8 +103,21 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition5() {
-        // TODO: add appropriate method parameters
+    /**
+     * @param points
+     * @return true if there are two consecutive coordinates with a negative difference between
+     * the x coordinates. i.e X[j] - X [i] < 0, where i = j + 1
+     */
+    public static boolean isCondition5(Point[] points) {
+        if (points.length  >= 2) {
+            for (int i = 0; i < points.length - 1; i++) {
+                int j = i + 1;
+                if (points[j].x - points[i].x < 0) {
+                    return true;
+                }
+            }
+            // TODO: add appropriate method parameters
+        }
         return false;
     }
 
@@ -236,9 +249,32 @@ public final class LIC {
         // TODO: add appropriate method parameters
         return false;
     }
-
-    public static boolean isCondition14() {
-        // TODO: add appropriate method parameters
+    /**
+     * 
+     * @param e_points one of the number of consecutive data points
+     * @param f_points another number of consecutive data points
+     * @param area1 the condition is partly met when area larger than area1
+     * @param area2 the condition is partly met when area less than area2
+     * @param points the input points array
+     * @return true if area between (area1, area2)
+     */
+    public static boolean isCondition14(int e_points, int f_points, double area1, double area2, Point[] points) {
+        if(points.length>=5 && area1 >=0 && area2 > 0){
+            if(e_points>=1 && f_points>=1 && (e_points+f_points)<=points.length-3){
+                int end = points.length - e_points - f_points -3;
+                double area;
+                boolean flag1 = false, flag2 = false;
+                for(int i=0;i<end+1;i++){
+                    area = Point.calculateArea(points[i], points[i+e_points+1],points[i+e_points+f_points+2]);
+                    if(area > area1)
+                        flag1 = true;
+                    if(area < area2)
+                        flag2 = true;
+                }
+                if(flag1 == true && flag2 == true)
+                    return true;
+            }
+        }
         return false;
     }
 }

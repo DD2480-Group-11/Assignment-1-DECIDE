@@ -176,7 +176,7 @@ class LICTest {
      */
     public void testCondition4Satisfied() {
         Point[] points = {new Point(1.0, 1.0), new Point(1.2, 1.0), new Point(-2.0, 3.0)};
-        assertTrue(LIC.isCondition4(3, 1, points));
+        assertTrue(LIC.isCondition4(2, 1, points));
     }
 
     @Test
@@ -250,6 +250,27 @@ class LICTest {
         assertFalse(result);
     }
 
+    @Test
+    @DisplayName("LIC::isCondition5::condition is satisfied.")
+    /*
+     * Tests whether isCondition5() is true when 2 consecutive points where there is a negative difference
+     * between X[i] and X[j], j = i -1
+     * This also checks that there is no off by one error
+     */
+    public void testCondition5Satisfied() {
+        Point[] points = {new Point(4.0, 1.0), new Point(3.0, 0.0), new Point(2.0, 0.0)};
+        assertTrue(LIC.isCondition5(points));
+    }
+    @Test
+    @DisplayName("LIC::isCondition5::condition is not satisfied.")
+    /*
+     * Tests whether isCondition5() is false when there are no consecutive points with negative difference
+     * between X[i] and X[j], j = i -1
+     */
+    public void testCondition5NotSatisfied() {
+        Point[] points = {new Point(1.0, 1.0), new Point(1.2, 1.0), new Point(2.0, 3.0)};
+        assertFalse(LIC.isCondition4(2, 1, points));
+    }
     @Test
     @DisplayName("LIC::isCondition10::condition is satisfied.")
     /**
@@ -516,5 +537,52 @@ class LICTest {
         boolean result = LIC.isCondition12(points, kPts, length1, length2);
 
         assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition14::condition is satisfied.")
+    /**
+     * Test if isCondition10 is true when both area1 and area2 met the requirement.
+     * the 1,3,5 points form a triangle with the area of 4; the 2,4,6 points form a triangle with the area of 0.5. 
+     */
+    public void testCondition14Satisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(2.0,1.0),new Point(3.0,3.0),new Point(1.5,2.0)};
+        assertTrue(LIC.isCondition14(1,1,3.0,1.0,points));
+
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition14::condition is not satisfied.")
+    /**
+     * Test if isCondition14 is false when the area1 mets the requirement but area2 does not met the requirements.
+     * There are 5 points in the array. So just 1,3,5 forms the triangle and meets the requirement: area1.
+     */
+    public void testCondition14NotSatisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0),new Point(3.0,3.0)};
+        assertFalse(LIC.isCondition14(1,1,3.0,1.0,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition14::NumOfPoints less than 5.")
+    /**
+     * Test if isCondition14 is false when the number of points is less than 5.
+     */
+    public void testCondition14NumNotSatisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0)};
+        assertEquals(false, LIC.isCondition14(1,1,3.0,1.0,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition14::Area 2 less than 0.")
+    /**
+     * Test if isCondition14 is false when the area2 is less than 0.
+     */
+    public void testCondition14Area2LessThan0(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(2.0,1.0),new Point(3.0,3.0),new Point(1.5,2.0)};
+        assertFalse(LIC.isCondition14(1,1,3.0,-1.0,points));
     }
 }
