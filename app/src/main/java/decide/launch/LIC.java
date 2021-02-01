@@ -124,8 +124,42 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition9() {
-        // TODO: add appropriate method parameters
+    /**
+     * @param points array of two dimensional points
+     * @param epsilon deviation from pi
+     * @param cPts number of separation between a point and the vertex
+     * @param dPts number of separation between a point and the vertex
+     * @return returns true is LIC 9 is satisfied
+     */
+    public static boolean isCondition9(Point[] points, double epsilon, int cPts, int dPts) {
+
+        final int SEPARATION = cPts + dPts;
+
+        if(epsilon < 0 || epsilon >= Math.PI)
+            return false;
+
+        if(cPts < 1 || dPts < 1)
+            return false;
+
+        if(SEPARATION > points.length - 3)
+            return false;
+
+        for(int i = 0; i + 2 + SEPARATION <= points.length-1; i++) {
+            final int VERTEX_INDEX = i + cPts + 1;
+            final int LAST_INDEX = VERTEX_INDEX + dPts + 1;
+
+            Point a = points[i];
+            Point vertex = points[VERTEX_INDEX];
+            Point b = points[LAST_INDEX];
+
+            if(Point.isEqual(a, vertex) || Point.isEqual(b, vertex))    // angle is undefined
+                return false;
+
+            double angle = Point.calculateAngle(a, vertex, b);
+            if((angle < (Math.PI - epsilon)) || (angle > (Math.PI + epsilon)))
+                return true;
+        }
+
         return false;
     }
     /**
