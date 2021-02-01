@@ -387,6 +387,66 @@ class LICTest {
 
         assertTrue(result);
     }
+
+    @Test
+    @DisplayName("LIC::isCondition11::LIC 11 returns false if (G_PTS < 1).")
+    public void testCondition11MinSeparationRequirement() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(2.0, 2.0)};
+        int gPts = 0;
+
+        boolean result = LIC.isCondition11(points, gPts);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition11::LIC 11 returns false if (G_PTS > (NUMPOINTS-2)).")
+    public void testCondition11MaxSeparationRequirement() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(2.0, 2.0)};
+        int gPts = points.length-1;
+
+        boolean result = LIC.isCondition11(points, gPts);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition11::LIC 11 returns true if condition is satisfied.")
+    /*
+     * returns true if two consecutive points satisfy: the latter point has a larger x value than the first. 
+     */
+    public void testCondition11Satisfied() {
+        Point[] points = {  new Point(2.0, 2.0),
+                            new Point(1.0, 1.0),
+                            new Point(0.0, 0.0)};
+        int gPts = 1;
+
+        boolean result = LIC.isCondition11(points, gPts);
+
+        assertTrue(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition11::LIC 11 returns false if condition is not satisfied.")
+    /*
+     * returns true if two consecutive points do not satisfy: the latter point has a larger x value than the first. 
+     */
+    public void testCondition11NotSatisfied() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(2.0, 2.0)};
+        int gPts = 1;
+
+        boolean result = LIC.isCondition11(points, gPts);
+
+        assertFalse(result);
+    }
+
+    @Test
     @DisplayName("LIC::isCondition12::LIC 12 returns false if (K_PTS > (NUMPOINTS-2)).")
     public void testCondition12MaxSeparationRequirement() {
         Point[] points = {  new Point(1.0, 1.0),
@@ -466,6 +526,7 @@ class LICTest {
 
         assertFalse(result);
     }
+
 
     @Test
     @DisplayName("LIC::isCondition14::condition is satisfied.")
