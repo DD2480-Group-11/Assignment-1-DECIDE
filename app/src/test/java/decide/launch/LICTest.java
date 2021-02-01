@@ -88,7 +88,7 @@ class LICTest {
                     () -> assertFalse(result3));
     }
 
-}
+
     @DisplayName("LIC::isCondition2::LIC 2 fails if outside range (0 <= epsilon < pi)")
     //tests that isCondition2 fails if epsilon value outside of range
     void testCondition2Range() {
