@@ -22,8 +22,18 @@ public final class LIC {
         return false;
     } 
 
-    public static boolean isCondition1() {
-        // TODO: add appropriate method parameters
+    public static boolean isCondition1(Point[] points, double radius) {        
+        for(int i = 0; i + 2 < points.length; i++){
+            Point x = points[i];
+            Point y = points[i+1];
+            Point z = points[i+2];
+
+            double r = Point.circumcircleRadius(x, y, z);
+            
+            if(r > radius){
+                return true;
+            }
+        }
         return false;
     }
 
