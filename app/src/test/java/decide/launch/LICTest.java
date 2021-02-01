@@ -211,6 +211,77 @@ class LICTest {
     }
 
     @Test
+    @DisplayName("LIC::isCondition7::LIC 7 returns false if (NUMPOINTS < 3).")
+    public void testCondition7NumPointsRequirement() {
+        Point[] points = {  new Point(1.0, 1.0),
+                            new Point(0.0, 0.0)};
+        int kPts = 1;
+        int length = 0;
+
+        boolean result = LIC.isCondition7(points, kPts, length);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition7::LIC 7 returns false if (K_PTS < 1).")
+    public void testCondition7MinSeparationRequirement() {
+        Point[] points = {  new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};
+        int kPts = 0;
+        int length = 1;
+
+        boolean result = LIC.isCondition7(points, kPts, length);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition7::LIC 7 returns false if (K_PTS > (NUMPOINTS-2)).")
+    public void testCondition7MaxSeparationRequirement() {
+        Point[] points = {  new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};
+        int kPts = points.length-1;
+        int length = 1;
+
+        boolean result = LIC.isCondition7(points, kPts, length);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition7::LIC 7 returns true if condition is satisfied.") 
+    public void testCondition7Satisfied() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};     // greatest dist approx. equals 12.7
+        int kPts = 1;
+        int length = 10;
+
+        boolean result = LIC.isCondition7(points, kPts, length);
+
+        assertTrue(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition7::LIC 7 returns false if condition is not satisfied.") 
+    public void testCondition7NotSatisfied() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};     // greatest dist approx. equals 12.7
+        int kPts = 1;
+        int length = 15;
+
+        boolean result = LIC.isCondition7(points, kPts, length);
+
+        assertFalse(result);
+    }
+
+    @Test
     @DisplayName("LIC::isCondition5::condition is satisfied.")
     /*
      * Tests whether isCondition5() is true when 2 consecutive points where there is a negative difference
