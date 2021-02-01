@@ -6,12 +6,12 @@ import decide.utils.Point;
 public final class LaunchInput {
     public final Point[] POINTS;
     public final Parameters PARAMS;
-    public final Connectors[][] LCM;
+    public final Connector[][] LCM;
     public final boolean[] PUV;
 
     public LaunchInput( Point[] POINTS,
                         Parameters PARAMS,
-                        Connectors[][] LCM,
+                        Connector[][] LCM,
                         boolean[] PUV) {
         this.POINTS = POINTS;
         this.PARAMS = PARAMS;
