@@ -211,4 +211,51 @@ class LICTest {
         assertEquals(false, LIC.isCondition10(1,1,3.0,points));
     }
 
+
+    @Test
+    @DisplayName("LIC::isCondition14::condition is satisfied.")
+    /**
+     * Test if isCondition10 is true when both area1 and area2 met the requirement.
+     * the 1,3,5 points form a triangle with the area of 4; the 2,4,6 points form a triangle with the area of 0.5. 
+     */
+    public void testCondition14Satisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(2.0,1.0),new Point(3.0,3.0),new Point(1.5,2.0)};
+        assertTrue(LIC.isCondition14(1,1,3.0,1.0,points));
+
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition14::condition is not satisfied.")
+    /**
+     * Test if isCondition14 is false when the area1 mets the requirement but area2 does not met the requirements.
+     * There are 5 points in the array. So just 1,3,5 forms the triangle and meets the requirement: area1.
+     */
+    public void testCondition14NotSatisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0),new Point(3.0,3.0)};
+        assertFalse(LIC.isCondition14(1,1,3.0,1.0,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition14::NumOfPoints less than 5.")
+    /**
+     * Test if isCondition14 is false when the number of points is less than 5.
+     */
+    public void testCondition14NumNotSatisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0)};
+        assertEquals(false, LIC.isCondition14(1,1,3.0,1.0,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition14::Area 2 less than 0.")
+    /**
+     * Test if isCondition14 is false when the area2 is less than 0.
+     */
+    public void testCondition14Area2LessThan0(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(2.0,1.0),new Point(3.0,3.0),new Point(1.5,2.0)};
+        assertFalse(LIC.isCondition14(1,1,3.0,-1.0,points));
+    }
 }
