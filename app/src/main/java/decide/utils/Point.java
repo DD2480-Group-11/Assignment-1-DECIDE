@@ -109,4 +109,21 @@ public final class Point {
             return 4;
         }
     }
+
+    /**
+     * Calculates the radius of the circumcircle of three points
+     * @param x First point
+     * @param y Second point
+     * @param z Third point
+     * @return the radius of the circumcircle of the three points
+     */
+    public static double circumcircleRadius(Point x, Point y, Point z){
+        double a = distBetween(x, y);
+        double b = distBetween(x, z);
+        double c = distBetween(y, z);
+        
+        double radius = (a * b * c) / Math.sqrt( (a + b + c) * (b + c - a) * (c + a - b) * (a + b - c));
+
+        return radius;
+    }
 }
