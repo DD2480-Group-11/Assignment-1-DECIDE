@@ -198,8 +198,24 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition11() {
-        // TODO: add appropriate method parameters
+    /**
+     * @param points array of two dimensional points
+     * @param gPts number of elements that separate two points
+     * @return true if there exists two consecutive points separated by gPts where the second has a larger x value than the first point
+     */
+    public static boolean isCondition11(Point[] points, int gPts) {
+
+        if(gPts < 1 || gPts > points.length-2 || points.length < 3)  // variable requirements
+            return false;
+
+        for(int i = 0; i < points.length-1-gPts; ++i) {
+            Point first = points[i];
+            Point second = points[i+gPts+1];
+
+            if((second.x - first.x) < 0)
+                return true;
+        }
+
         return false;
     }
 
