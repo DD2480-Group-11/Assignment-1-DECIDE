@@ -103,8 +103,21 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition5() {
-        // TODO: add appropriate method parameters
+    /**
+     * @param points
+     * @return true if there are two consecutive coordinates with a negative difference between
+     * the x coordinates. i.e X[j] - X [i] < 0, where i = j + 1
+     */
+    public static boolean isCondition5(Point[] points) {
+        if (points.length  >= 2) {
+            for (int i = 0; i < points.length - 1; i++) {
+                int j = i + 1;
+                if (points[j].x - points[i].x < 0) {
+                    return true;
+                }
+            }
+            // TODO: add appropriate method parameters
+        }
         return false;
     }
 
