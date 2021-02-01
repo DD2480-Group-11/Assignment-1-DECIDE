@@ -465,6 +465,7 @@ class LICTest {
         boolean result = LIC.isCondition12(points, kPts, length1, length2);
 
         assertFalse(result);
+    }
 
     @Test
     @DisplayName("LIC::isCondition14::condition is satisfied.")
