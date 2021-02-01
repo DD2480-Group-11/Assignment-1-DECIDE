@@ -122,7 +122,7 @@ public final class Point {
         double b = distBetween(x, z);
         double c = distBetween(y, z);
         
-        double radius = (a * b * c) / Math.sqrt( (a + b + c) * (b + c - a) * (a + b - c));
+        double radius = (a * b * c) / Math.sqrt( (a + b + c) * (b + c - a) * (c + a - b) * (a + b - c));
 
         return radius;
     }
