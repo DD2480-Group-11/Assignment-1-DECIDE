@@ -130,7 +130,13 @@ public final class LIC {
         }
         return false;
     }
-
+    /**
+     * 
+     * @param n_points n_points consercutive points
+     * @param dist the required distance between the point and the line
+     * @param points the input point array
+     * @return if the LIC condition 6 is satisfied
+     */
     public static boolean isCondition6(int n_points, double dist, Point[] points) {
         int length1 = points.length; 
         double area, dist1, dist2,length2; 
