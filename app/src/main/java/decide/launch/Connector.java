@@ -1,6 +1,6 @@
 package decide.launch;
 
-public enum Connectors {
+public enum Connector {
     NOTUSED,
     ORR,
     ANDD
