@@ -176,7 +176,7 @@ class LICTest {
      */
     public void testCondition4Satisfied() {
         Point[] points = {new Point(1.0, 1.0), new Point(1.2, 1.0), new Point(-2.0, 3.0)};
-        assertTrue(LIC.isCondition4(3, 1, points));
+        assertTrue(LIC.isCondition4(2, 1, points));
     }
 
     @Test
