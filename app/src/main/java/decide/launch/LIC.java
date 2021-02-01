@@ -121,7 +121,38 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition6() {
+    public static boolean isCondition6(int n_points, double dist, Point[] points) {
+        int length1 = points.length; 
+        double area, dist1, dist2,length2; 
+        //area: the area of the chosed 3 points; 
+        //dist1: the distance between the point and the line(apply to the situation when the first and last point differs);
+        //dist2: the distance between two points(apply to the situation when the first and last point coincides);
+        //length2: the distance between two points in order to calculate the dist1;
+        if(length1>=3 && dist>=0){
+            if(n_points>=3 && n_points<=length1){                              
+                for(int i = 0;i < length1-n_points + 1){
+                    if(points[i].x != points[i+n_points-1].x || points[i].y != points[i+n_points-1].y){
+                        for(int j = i+1; j<=i+n_points-2; j++){                            
+                            area = Point.calculateArea(points[i], points[i+n_points-1],points[j] );
+                            length2 = Point.distBetween(points[i], points[i+n_points-1]);
+                            dist1 = 0;
+                            if(length2 != 0){
+                                dist1 = 2*area/length2;
+                            }                            
+                            if(dist1 >dist)
+                                return true;
+                        }
+                    }else{
+                        for(int k = i+1; k<=i+n_points-2; k++){
+                            dist2 = Point.distBetween(points[i], points[k]);
+                            if(dist2 > dist)
+                                return true;
+                        }
+                    }
+                }
+                
+            }
+        }
         // TODO: add appropriate method parameters
         return false;
     }
