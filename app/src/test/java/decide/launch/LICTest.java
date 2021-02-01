@@ -56,4 +56,36 @@ class LICTest {
 
         assertFalse(result);
     }
+
+    @Test
+    @DisplayName("LIC::isCondition1::LIC 1 fails if condition is not met.")
+    //tests that isCondition1 fails if if all consecutive points can be inside the circle
+    void testCondition1NotSatisfied() {
+        //Equilateral triangle
+        Point[] eqTriangle = {  new Point(0.0, 0.0),
+                                new Point(3.0,0.0),
+                                new Point(1.5,2.6)}; //Should yield circumcircle radius of ~1.73
+        double radius1 = 2;
+        boolean result1 = LIC.isCondition1(eqTriangle, radius1);
+
+        //Right triangle
+        Point[] rTriangle = {   new Point(0.0, 0.0),
+                                new Point(5.0,0.0),
+                                new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.5
+        double radius2 = 4;
+        boolean result2 = LIC.isCondition1(rTriangle, radius2);
+
+         //Obtuse triangle
+         Point[] oTriangle = {  new Point(1.0, 0.0),
+                                new Point(5.0,0.0),
+                                new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.6
+                    double radius3 = 4;
+                    boolean result3 = LIC.isCondition1(oTriangle, radius3);
+
+        
+        assertAll(  () -> assertFalse(result1),
+                    () -> assertFalse(result2),
+                    () -> assertFalse(result3));
+    }
+
 }
