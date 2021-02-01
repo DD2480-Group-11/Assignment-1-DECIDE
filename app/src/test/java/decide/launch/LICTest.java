@@ -190,7 +190,7 @@ class LICTest {
         assertTrue(LIC.isCondition5(points));
     }
     @Test
-    @DisplayName("LIC::isCondition5::condition is satisfied.")
+    @DisplayName("LIC::isCondition5::condition is not satisfied.")
     /*
      * Tests whether isCondition5() is false when there are no consecutive points with negative difference
      * between X[i] and X[j], j = i -1
