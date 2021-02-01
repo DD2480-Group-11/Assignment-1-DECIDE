@@ -283,4 +283,238 @@ class LICTest {
         assertEquals(false, LIC.isCondition10(1,1,3.0,points));
     }
 
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 fails if outside range (0 <= epsilon < pi)")
+    //tests that isCondition9 fails if epsilon value outside of range
+    void testCondition9Range() {
+        Point[] points = {new Point(0.0, 0.0)};
+        double negEpsilon = -1.0;
+        double outOfMaxRangeEpsilon = 3.5;
+
+        assertAll(  "Assert within range (0 <= epsilon < pi)",
+                    () -> assertFalse(LIC.isCondition9(points, negEpsilon, 1, 1)),
+                    () -> assertFalse(LIC.isCondition9(points, outOfMaxRangeEpsilon, 1, 1)));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 returns false if either C_PTS and D_PTS are (< 1).")
+    void testCondition9PassedPointsRequirements() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0)};
+        double epsilon = 1.0;
+        int p1 = 0;
+        int p2 = 1;
+
+        assertAll(  () -> assertFalse(LIC.isCondition9(points, epsilon, p1, p2)),
+                    () -> assertFalse(LIC.isCondition9(points, epsilon, p2, p1)));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 fails when first point coincides with vertex.")
+    void testCondition9AngleUndefined1() {
+        Point[] points = {  new Point(1.0, 1.0),    // coincides with vertex
+                            new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0)};
+        double epsilon = 0.0;
+        int cPts = 1;
+        int dPts = 1;
+
+        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition12::LIC 12 returns false if (length1 < 0)")
+    public void testCondition12NegativeLength1() {
+        Point[] points = {  new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};
+        int kPts = 0;
+        int length1 = -1;
+        int length2 = 1;
+
+        boolean result = LIC.isCondition12(points, kPts, length1, length2);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition12::LIC 12 returns false if (length2 < 0)")
+    public void testCondition12NegativeLength2() {
+        Point[] points = {  new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};
+        int kPts = 1;
+        int length1 = 1;
+        int length2 = -1;
+
+        boolean result = LIC.isCondition12(points, kPts, length1, length2);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition12::LIC 12 returns false if (NUMPOINTS < 3).")
+    public void testCondition12NumPointsRequirement() {
+        Point[] points = {  new Point(1.0, 1.0),
+                            new Point(0.0, 0.0)};
+        int kPts = 1;
+        int length1 = 1;
+        int length2 = 2;
+
+        boolean result = LIC.isCondition12(points, kPts, length1, length2);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 fails when second point coincides with vertex.")
+    void testCondition9AngleUndefined2() {
+        Point[] points = {  new Point(0.0, 0.0),   
+                            new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(1.0, 1.0)};   // coincides with vertex
+        double epsilon = 0.0;
+        int cPts = 1;
+        int dPts = 1;
+
+        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition12::LIC 12 returns false if (K_PTS < 1).")
+    public void testCondition12MinSeparationRequirement() {
+        Point[] points = {  new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};
+        int kPts = 0;
+        int length1 = 1;
+        int length2 = 2;
+
+        boolean result = LIC.isCondition12(points, kPts, length1, length2);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 is true when condition (angle < (pi - epsilon)) is satisfied")
+    void testCondition9ConditionSatisfied1() {
+        Point[] points = {  new Point(3.0, 1.0),
+                            new Point(15.0, 15.0),
+                            new Point(0.0, 0.0),
+                            new Point(15.0, 15.0),
+                            new Point(3.0, 1.15)};    // angle approx. 2.56 degrees
+        double epsilon = 0.1;
+        int cPts = 1;
+        int dPts = 1;
+
+        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
+
+        assertTrue(true);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 is true when condition (angle > (pi + epsilon)) is satisfied")
+    void testCondition9ConditionSatisfied2() {
+        Point[] points = {  new Point(2.0, 2.0),
+                            new Point(15.0, 15.0),
+                            new Point(15.0, 3.0),
+                            new Point(15.0, 15.0),
+                            new Point(5.0, 8.0)};    // angle approx. 59 degrees
+        double epsilon = 2.5;
+        int cPts = 1;
+        int dPts = 1;
+
+        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
+
+        assertTrue(result);
+    }
+    @DisplayName("LIC::isCondition12::LIC 12 returns false if (K_PTS > (NUMPOINTS-2)).")
+    public void testCondition12MaxSeparationRequirement() {
+        Point[] points = {  new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};
+        int kPts = points.length-1;
+        int length1 = 1;
+        int length2 = 2;
+
+        boolean result = LIC.isCondition12(points, kPts, length1, length2);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition12::LIC 12 returns true if condition is satisfied.") 
+    public void testCondition12Satisfied() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};     // greatest dist approx. equals 12.7
+        int kPts = 1;
+        int length1 = 10;   // < 12.7, so greater than length1
+        int length2 = 15;   // > 12.7, so less than length2
+
+        boolean result = LIC.isCondition12(points, kPts, length1, length2);
+
+        assertTrue(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 is false when condition is not satisfied.")
+    void testCondition9ConditionNotSatisfied() {
+        Point[] points = {  new Point(3.0, 1.0),
+                            new Point(15.0, 15.0),
+                            new Point(0.0, 0.0),
+                            new Point(15.0, 15.0),
+                            new Point(3.0, 1.15)};      // angle approx. 2.56 degrees
+        double epsilon = 2.5;                           // makes angle > (pi - epsilon)
+        int cPts = 1;
+        int dPts = 1;
+
+        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
+        
+        assertFalse(result);
+    }
+
+
+    @Test
+    @DisplayName("LIC::isCondition12::LIC 12 returns false if condition is not satisfied. No consecutive points greater than length1.") 
+    public void testCondition12NotSatisfied1() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(10.0, 10.0)};     // greatest dist approx. equals 12.7
+        int kPts = 1;
+        int length1 = 15;    // > 12.7, so no points with distance greater than length1
+        int length2 = 20;
+
+        boolean result = LIC.isCondition12(points, kPts, length1, length2);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition12::LIC 12 returns false if condition is not satisfied. No consecutive points less than length2.") 
+    public void testCondition12NotSatisfied2() {
+        Point[] points = {  new Point(10.0, 10.0),
+                            new Point(1.0, 1.0),
+                            new Point(1.0, 1.0),
+                            new Point(10.0, 10.0)};     // greatest dist approx. equals 12.7
+        int kPts = 1;
+        int length1 = 10;   
+        int length2 = 11;   // < 12.7, so no points with distance less than length2
+
+        boolean result = LIC.isCondition12(points, kPts, length1, length2);
+
+        assertFalse(result);
+    }
 }

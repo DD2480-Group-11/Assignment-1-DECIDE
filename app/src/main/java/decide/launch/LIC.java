@@ -18,7 +18,7 @@ public final class LIC {
         if(length <= 0.0)
             return false;
 
-        for(int i = 0; i < points.length-2; i++) {
+        for(int i = 0; i < points.length-1; i++) {
             final Point first = points[i];
             final Point second = points[i+1];
             final double distBetween = Point.distBetween(first, second);
@@ -141,8 +141,42 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition9() {
-        // TODO: add appropriate method parameters
+    /**
+     * @param points array of two dimensional points
+     * @param epsilon deviation from pi
+     * @param cPts number of separation between a point and the vertex
+     * @param dPts number of separation between a point and the vertex
+     * @return returns true is LIC 9 is satisfied
+     */
+    public static boolean isCondition9(Point[] points, double epsilon, int cPts, int dPts) {
+
+        final int SEPARATION = cPts + dPts;
+
+        if(epsilon < 0 || epsilon >= Math.PI)
+            return false;
+
+        if(cPts < 1 || dPts < 1)
+            return false;
+
+        if(SEPARATION > points.length - 3)
+            return false;
+
+        for(int i = 0; i + 2 + SEPARATION <= points.length-1; i++) {
+            final int VERTEX_INDEX = i + cPts + 1;
+            final int LAST_INDEX = VERTEX_INDEX + dPts + 1;
+
+            Point a = points[i];
+            Point vertex = points[VERTEX_INDEX];
+            Point b = points[LAST_INDEX];
+
+            if(Point.isEqual(a, vertex) || Point.isEqual(b, vertex))    // angle is undefined
+                return false;
+
+            double angle = Point.calculateAngle(a, vertex, b);
+            if((angle < (Math.PI - epsilon)) || (angle > (Math.PI + epsilon)))
+                return true;
+        }
+
         return false;
     }
     /**
@@ -173,8 +207,28 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition12() {
-        // TODO: add appropriate method parameters
+    /**
+     * @param points array of two dimensional points
+     * @param kPts separation between consecutive points
+     * @param length1 value that distance between points is checked to be greater than
+     * @param length2 value that distance between points is checked to be less than
+     * @return true if there exists consecutive points, which has a distance between eachother greather than length1 and less than length2
+     */
+    public static boolean isCondition12(Point[] points, int kPts, int length1, int length2) {
+
+        // check that variable requirements are met
+        if(kPts < 1 || kPts > points.length-2 || points.length < 3 || length1 < 0 || length2 < 0)
+            return false;
+
+        for(int i = 0; i < (points.length-1-kPts); i++) {
+            Point first = points[i];
+            Point second = points[i+kPts+1];
+            final double distBetween = Point.distBetween(first, second);
+
+            if(distBetween > length1 && distBetween < length2)
+                return true;
+        } 
+
         return false;
     }
 
