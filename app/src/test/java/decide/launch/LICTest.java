@@ -347,24 +347,30 @@ class LICTest {
     void testCondition8NotSatisfied() {
         //Equilateral triangle
         Point[] eqTriangle = {  new Point(0.0, 0.0),
+                                new Point(0.0, 0.0),
                                 new Point(3.0,0.0),
+                                new Point(0.0, 0.0),
                                 new Point(1.5,2.6)}; //Should yield circumcircle radius of ~1.73
         double radius1 = 2;
-        boolean result1 = LIC.isCondition8(eqTriangle, radius1);
+        boolean result1 = LIC.isCondition8(eqTriangle, radius1,1,1);
 
         //Right triangle
         Point[] rTriangle = {   new Point(0.0, 0.0),
+                                new Point(0.0, 0.0),
                                 new Point(5.0,0.0),
+                                new Point(0.0, 0.0),
                                 new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.5
         double radius2 = 4;
-        boolean result2 = LIC.isCondition8(rTriangle, radius2);
+        boolean result2 = LIC.isCondition8(rTriangle, radius2,1,1);
 
          //Obtuse triangle
          Point[] oTriangle = {  new Point(1.0, 0.0),
+                                new Point(0.0, 0.0),
                                 new Point(5.0,0.0),
+                                new Point(0.0, 0.0),
                                 new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.6
                     double radius3 = 4;
-                    boolean result3 = LIC.isCondition8(oTriangle, radius3);
+                    boolean result3 = LIC.isCondition8(oTriangle, radius3,1,1);
 
         
         assertAll(  () -> assertFalse(result1),
