@@ -58,6 +58,21 @@ class LICTest {
     }
 
     @Test
+    @DisplayName("LIC::isCondition1::LIC 1 works with collinear points")
+    //tests that isCondition1 works with collinear points
+    void testCondition1CollinearPoints() {
+        Point[] collinearPoints = { new Point(0.0, 0.0),
+                                    new Point(1.1, 1.1),
+                                    new Point(2.2, 2.2)}; //Yields a line of length ~2.8
+        double radius1 = 1;
+        double radius2 = 3;
+
+        assertAll(  () -> assertTrue(result1),
+                    () -> assertFalse(result2));
+
+    }
+
+    @Test
     @DisplayName("LIC::isCondition1::LIC 1 fails if condition is not met.")
     //tests that isCondition1 fails if if all consecutive points can be inside the circle
     void testCondition1NotSatisfied() {
