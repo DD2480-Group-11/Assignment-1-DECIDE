@@ -348,7 +348,9 @@ public final class LIC {
      * @return true if both condition are met
      */
     public static boolean isCondition13(Point[] points, double radius1, double radius2, int aPts, int bPts) {
-
+        if(radius2 < 0)
+            return false;
+        
         boolean a = isCondition8(points, radius1, aPts, bPts);
         boolean b = isCondition8(points, radius2, aPts, bPts);
 
