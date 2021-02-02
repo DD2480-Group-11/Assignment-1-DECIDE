@@ -188,7 +188,7 @@ public final class LIC {
      * @param length value that distance between points are checked against
      * @return true if LIC 7 is satisfied
      */
-    public static boolean isCondition7(Point[] points, int kPts, int length) {
+    public static boolean isCondition7(Point[] points, int kPts, double length) {
 
         if(kPts < 1 || kPts > points.length-2 || points.length < 3)
             return false;
@@ -337,7 +337,7 @@ public final class LIC {
      * @param length2 value that distance between points is checked to be less than
      * @return true if there exists consecutive points, which has a distance between eachother greather than length1 and less than length2
      */
-    public static boolean isCondition12(Point[] points, int kPts, int length1, int length2) {
+    public static boolean isCondition12(Point[] points, int kPts, double length1, double length2) {
 
         // check that variable requirements are met
         if(kPts < 1 || kPts > points.length-2 || points.length < 3 || length1 < 0 || length2 < 0)

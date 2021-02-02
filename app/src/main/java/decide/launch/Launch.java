@@ -8,7 +8,7 @@ public class Launch {
     // returns output as according to specification
     public static LaunchOutput decide(LaunchInput input) {
 
-        boolean[] cmv = calculateCMV(input.PARAMS);
+        boolean[] cmv = calculateCMV(input.POINTS, input.PARAMS);
         boolean[][] pum = calculatePUM(cmv, input.LCM);
         boolean[] fuv = calculateFUV(pum, input.PUV);
 
@@ -22,9 +22,56 @@ public class Launch {
     }
 
     //uses conditions in LIC class
-    private static boolean[] calculateCMV(Parameters params) {
-        // TODO
-        return null;
+    public static boolean[] calculateCMV(Point[] points, Parameters params) {
+
+        boolean[] cmv = new boolean[15];
+
+        if(LIC.isCondition0(points, params.LENGTH_1))
+            cmv[0] = true;
+
+        if(LIC.isCondition1(points, params.RADIUS_1))
+            cmv[1] = true;
+
+        if(LIC.isCondition2(points, params.EPSILON))
+            cmv[2] = true;
+
+        if(LIC.isCondition3(params.AREA_1, points))
+            cmv[3] = true;
+
+        if(LIC.isCondition4(params.Q_PTS, params.QUADS, points))
+            cmv[4] = true;
+
+        if(LIC.isCondition5(points))
+            cmv[5] = true;
+
+        if(LIC.isCondition6(params.N_PTS, params.DIST, points))
+            cmv[6] = true;
+
+        if(LIC.isCondition7(points, params.K_PTS, params.LENGTH_1))
+            cmv[7] = true;
+
+        if(LIC.isCondition8(points, params.RADIUS_1, params.A_PTS, params.B_PTS))
+            cmv[8] = true;
+
+        if(LIC.isCondition9(points, params.EPSILON, params.C_PTS, params.D_PTS))
+            cmv[9] = true;
+
+        if(LIC.isCondition10(params.E_PTS, params.F_PTS, params.AREA_1, points))
+            cmv[10] = true;
+
+        if(LIC.isCondition11(points, params.G_PTS))
+            cmv[11] = true;
+
+        if(LIC.isCondition12(points, params.K_PTS, params.LENGTH_1, params.LENGTH_2))
+            cmv[12] = true;
+
+        if(LIC.isCondition13(points, params.RADIUS_1, params.RADIUS_2, params.A_PTS, params.B_PTS))
+            cmv[13] = true;
+
+        if(LIC.isCondition14(params.E_PTS, params.F_PTS, params.AREA_1, params.AREA_2, points))
+            cmv[14] = true;
+
+        return cmv;
     }
 
     /**
