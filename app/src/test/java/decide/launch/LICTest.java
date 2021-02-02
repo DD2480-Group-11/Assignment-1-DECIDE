@@ -341,6 +341,60 @@ class LICTest {
         assertFalse(LIC.isCondition6(n_points,dist,points));
     }
 
+    @Test
+    @DisplayName("LIC::isCondition8::LIC 8 fails if condition is not met.")
+    //tests that isCondition8 fails if if all consecutive points can be inside the circle
+    void testCondition8NotSatisfied() {
+        //Equilateral triangle
+        Point[] eqTriangle = {  new Point(0.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(3.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(1.5,2.6)}; //Should yield circumcircle radius of ~1.73
+        double radius1 = 2;
+        boolean result1 = LIC.isCondition8(eqTriangle, radius1,1,1);
+
+        //Right triangle
+        Point[] rTriangle = {   new Point(0.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(5.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.5
+        double radius2 = 4;
+        boolean result2 = LIC.isCondition8(rTriangle, radius2,1,1);
+
+         //Obtuse triangle
+         Point[] oTriangle = {  new Point(1.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(5.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.6
+                    double radius3 = 4;
+                    boolean result3 = LIC.isCondition8(oTriangle, radius3,1,1);
+
+        
+        assertAll(  () -> assertFalse(result1),
+                    () -> assertFalse(result2),
+                    () -> assertFalse(result3));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition8::LIC 8 returns false if either A_PTS and B_PTS are (< 1).")
+    void testCondition8PassedPointsRequirements() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0)};
+        double radius = 1.0;
+        int p1 = 0;
+        int p2 = 1;
+
+        assertAll(  () -> assertFalse(LIC.isCondition8(points, radius, p1, p2)),
+                    () -> assertFalse(LIC.isCondition8(points, radius, p2, p1)));
+    }
+
+
 
     @Test
     @DisplayName("LIC::isCondition10::condition is satisfied.")

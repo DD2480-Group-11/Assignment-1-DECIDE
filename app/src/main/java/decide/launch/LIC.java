@@ -196,8 +196,38 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition8() {
-        // TODO: add appropriate method parameters
+    /**
+     * 
+     * @param points array of two dimensional points
+     * @param radius the radius that the points are tested against
+     * @param aPts   number of separation between point one and two
+     * @param bPts   number of separation between point two and three
+     * @return true if LIC 8 is satisfied
+     */
+    public static boolean isCondition8(Point[] points, double radius, int aPts, int bPts) {
+        final int SEPARATION = aPts + bPts;
+
+        if(aPts < 1 || bPts < 1)
+            return false;
+
+        if(SEPARATION > points.length - 3)
+            return false;
+        
+        for(int i = 0; i + 2 + SEPARATION <= points.length-1; i++) {
+           int secondPointIndex = i + aPts + 1;
+           int thirdPointIndex = secondPointIndex + bPts + 1;
+           
+            Point x = points[i];
+            Point y = points[secondPointIndex];
+            Point z = points[thirdPointIndex];
+
+            double r = Point.circumcircleRadius(x, y, z);
+            
+            if(r > radius){
+                return true;
+            }
+
+        }
         return false;
     }
 
