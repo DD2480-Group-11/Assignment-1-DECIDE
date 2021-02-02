@@ -8,7 +8,7 @@ public class Launch {
     // returns output as according to specification
     public static LaunchOutput decide(LaunchInput input) {
 
-        boolean[] cmv = calculateCMV(input.PARAMS);
+        boolean[] cmv = calculateCMV(input.POINTS, input.PARAMS);
         boolean[][] pum = calculatePUM(cmv, input.LCM);
         boolean[] fuv = calculateFUV(pum, input.PUV);
 
@@ -22,7 +22,7 @@ public class Launch {
     }
 
     //uses conditions in LIC class
-    public static boolean[] calculateCMV(Parameters params) {
+    public static boolean[] calculateCMV(Point[] points, Parameters params) {
         // TODO
         return null;
     }
