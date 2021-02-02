@@ -371,7 +371,7 @@ public final class LIC {
         boolean a = isCondition8(points, radius1, aPts, bPts);
         boolean b = isCondition8(points, radius2, aPts, bPts);
 
-        return (a&b);
+        return (a&!b);
     }
     /**
      * 
