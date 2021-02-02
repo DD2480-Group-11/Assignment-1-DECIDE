@@ -146,4 +146,21 @@ public final class Point {
             }
         return false;
     }
+
+    /**
+     * Calculates the length of a line formed by three points
+     * @param a Point
+     * @param b Point
+     * @param c Point
+     * @return the length of the line formed by the three points
+     */
+    public static double lineLength(Point a, Point b, Point c){
+        double distAB = distBetween(a, b);
+        double distAC = distBetween(a, c);
+        double distBC = distBetween(b, c);
+
+        double result = Math.max(Math.max(distAB,distAC), distBC);
+
+        return result;
+    }
 }
