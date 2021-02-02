@@ -59,7 +59,7 @@ public class Launch {
             }
         }
 
-	    return pum; 
+	    return pum;
     }
 
     private static boolean[] calculateFUV(boolean[][] pum) {
@@ -67,8 +67,13 @@ public class Launch {
         return null;
     }
 
-    private static boolean shouldLaunch(boolean[] fuv) {
-        // TODO
-        return false;
+    public static boolean shouldLaunch(boolean[] fuv) {
+        for (int i = 0; i < fuv.length; i++) {
+            if (!fuv[i]) {
+                return false;
+            }
+        }
+        return true;
     }
+
 }

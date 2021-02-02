@@ -2,6 +2,9 @@ package decide.launch;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LaunchTest {
@@ -108,5 +111,26 @@ class LaunchTest {
         for(int i = 0; i < size; i++) {
             assertArrayEquals(expected[i], actual[i]);
         }
+    }
+    @Test
+    @DisplayName("Launch::shouldLaunch::produces correct output for appropriate input")
+    void testShouldLaunchSatisfied() {
+        boolean[] fuv = new boolean[15];
+        Arrays.fill(fuv, true);
+        assertTrue(Launch.shouldLaunch(fuv));
+    }
+
+    @Test
+    @DisplayName("Launch::shouldLaunch::produces correct output for inappropriate input")
+    void testShouldLaunchNotSatisfied() {
+        boolean[] fuv = new boolean[15];
+        assertFalse(Launch.shouldLaunch(fuv));
+        fuv[14] = true;
+        assertFalse(Launch.shouldLaunch(fuv));
+        fuv[0] = true;
+        assertFalse(Launch.shouldLaunch(fuv));
+        Arrays.fill(fuv, true);
+        fuv[0] = false;
+        assertFalse(Launch.shouldLaunch(fuv));
     }
 }
