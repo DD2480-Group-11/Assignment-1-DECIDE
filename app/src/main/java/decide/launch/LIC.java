@@ -338,9 +338,21 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition13() {
-        // TODO: add appropriate method parameters
-        return false;
+    /**
+     * 
+     * @param points array of two dimensional points
+     * @param radius1 first radius to test points against
+     * @param radius2 second redius to test points against
+     * @param aPts separation between first and second point
+     * @param bPts separation between second and third point
+     * @return true if both condition are met
+     */
+    public static boolean isCondition13(Point[] points, double radius1, double radius2, int aPts, int bPts) {
+
+        boolean a = isCondition8(points, radius1, aPts, bPts);
+        boolean b = isCondition8(points, radius2, aPts, bPts);
+
+        return (a&b);
     }
     /**
      * 
