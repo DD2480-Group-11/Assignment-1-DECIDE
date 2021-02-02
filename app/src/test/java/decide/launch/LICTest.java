@@ -372,6 +372,22 @@ class LICTest {
                     () -> assertFalse(result3));
     }
 
+    @Test
+    @DisplayName("LIC::isCondition8::LIC 8 returns false if either A_PTS and B_PTS are (< 1).")
+    void testCondition8PassedPointsRequirements() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0),
+                            new Point(0.0, 0.0)};
+        double radius = 1.0;
+        int p1 = 0;
+        int p2 = 1;
+
+        assertAll(  () -> assertFalse(LIC.isCondition8(points, radius, p1, p2)),
+                    () -> assertFalse(LIC.isCondition8(points, radius, p2, p1)));
+    }
+
 
 
     @Test
