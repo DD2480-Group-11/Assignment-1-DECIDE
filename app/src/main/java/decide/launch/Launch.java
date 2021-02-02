@@ -27,7 +27,7 @@ public class Launch {
         return null;
     }
 
-    private static boolean[][] calculatePUM(boolean[] cmv, Connectors[][] lcm) {
+    private static boolean[][] calculatePUM(boolean[] cmv, Connector[][] lcm) {
         // TODO
         return null;
     }
