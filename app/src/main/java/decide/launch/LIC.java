@@ -215,7 +215,7 @@ public final class LIC {
         
         for(int i = 0; i + 2 + SEPARATION <= points.length-1; i++) {
            int secondPointIndex = i + aPts + 1;
-           int thirdPointIndex = secondPointIndex + bTs + 1;
+           int thirdPointIndex = secondPointIndex + bPts + 1;
            
             Point x = points[i];
             Point y = points[secondPointIndex];
