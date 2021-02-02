@@ -10,7 +10,7 @@ public class Launch {
 
         boolean[] cmv = calculateCMV(input.PARAMS);
         boolean[][] pum = calculatePUM(cmv, input.LCM);
-        boolean[] fuv = calculateFUV(pum);
+        boolean[] fuv = calculateFUV(pum, input.PUV);
 
         LaunchOutput output = new LaunchOutput(cmv, pum, fuv);
 
@@ -59,12 +59,27 @@ public class Launch {
             }
         }
 
-	    return pum; 
+	    return pum;
     }
 
-    private static boolean[] calculateFUV(boolean[][] pum) {
-        // TODO
-        return null;
+    public static boolean[] calculateFUV(boolean[][] pum, boolean[] puv) {
+        boolean[] fuv = new boolean[15];
+        for (int i = 0; i < pum.length; i += 1) {
+            if (puv[i]) {
+                fuv[i] = true;
+                for (int j = 0; j < pum[i].length; j += 1) {
+                    if (!pum[i][j]) {
+                        if (j != i) {
+                            fuv[i] = false;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                fuv[i] = true;
+            }
+        }
+        return fuv;
     }
 
     private static boolean shouldLaunch(boolean[] fuv) {
