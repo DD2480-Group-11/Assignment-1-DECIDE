@@ -31,10 +31,19 @@ public final class LIC {
     }
 
     public static boolean isCondition1(Point[] points, double radius) {        
+        
         for(int i = 0; i + 2 < points.length; i++){
             Point x = points[i];
             Point y = points[i+1];
             Point z = points[i+2];
+
+            if(Point.collinearPoints(x, y, z)){
+                double diameter = Point.lineLength(x, y, z);
+                if( (diameter / 2) > radius){
+                    return true;
+                }
+                continue;
+            }
 
             double r = Point.circumcircleRadius(x, y, z);
             
@@ -220,6 +229,14 @@ public final class LIC {
             Point x = points[i];
             Point y = points[secondPointIndex];
             Point z = points[thirdPointIndex];
+
+            if(Point.collinearPoints(x, y, z)){
+                double diameter = Point.lineLength(x, y, z);
+                if( (diameter / 2) > radius){
+                    return true;
+                }
+                continue;
+            }
 
             double r = Point.circumcircleRadius(x, y, z);
             
