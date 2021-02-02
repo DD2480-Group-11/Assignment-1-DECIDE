@@ -22,7 +22,7 @@ public class Launch {
     }
 
     //uses conditions in LIC class
-    private static boolean[] calculateCMV(Parameters params) {
+    public static boolean[] calculateCMV(Parameters params) {
         // TODO
         return null;
     }
