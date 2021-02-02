@@ -725,7 +725,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition13::LIC 13 fails if conditions is not met.")
+    @DisplayName("LIC::isCondition13::LIC 13 fails if both conditions is not met.")
     //tests that isCondition13 fails if if all consecutive points can be inside the circle
     void testCondition13NotSatisfied() {
         //Equilateral triangle
@@ -762,6 +762,58 @@ class LICTest {
         assertAll(  () -> assertFalse(result1),
                     () -> assertFalse(result2),
                     () -> assertFalse(result3));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition13::LIC 13 fails if one of the conditions is not met.")
+    //tests that isCondition13 fails if only one of the consecutive points can be inside the circle
+    void testCondition13SingleNotSatisfied() {
+        //Equilateral triangle
+        Point[] triangle1 = {  new Point(0.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(3.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(1.5,2.6)}; //Should yield circumcircle radius of ~1.73
+        double radius1 = 2;
+        double radius2 = 1.5;
+        boolean result1 = LIC.isCondition13(triangle1, radius1, radius2, 1,1);
+        radius1 = 1.5;
+        radius2 = 2;
+        boolean result2 = LIC.isCondition13(triangle1, radius1, radius2, 1,1);
+
+        //Right triangle
+        Point[] triangle2 = {   new Point(0.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(5.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.5
+        radius1 = 4;
+        radius2 = 3;
+        boolean result3 = LIC.isCondition13(triangle2, radius1, radius2, 1,1);
+        radius1 = 3;
+        radius2 = 4;
+        boolean result4 = LIC.isCondition13(triangle2, radius1, radius2, 1,1);
+
+         //Obtuse triangle
+         Point[] triangle3 = {  new Point(1.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(5.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.6
+        radius1 = 4;
+        radius2 = 3;
+        boolean result5 = LIC.isCondition13(triangle3, radius1, radius2, 1, 1);
+        radius1 = 3;
+        radius2 = 4;
+        boolean result6 = LIC.isCondition13(triangle3, radius1, radius2, 1, 1);
+
+        
+        assertAll(  () -> assertFalse(result1),
+                    () -> assertFalse(result2),
+                    () -> assertFalse(result3),
+                    () -> assertFalse(result4),
+                    () -> assertFalse(result5),
+                    () -> assertFalse(result6));
     }
 
     @Test
