@@ -773,8 +773,8 @@ class LICTest {
                                 new Point(3.0,0.0),
                                 new Point(0.0, 0.0),
                                 new Point(1.5,2.6)}; //Should yield circumcircle radius of ~1.73
-        double radius1 = 2;
-        double radius12 = 2.5;
+        double radius1 = 1.5;
+        double radius12 = 2;
         boolean result1 = LIC.isCondition13(eqTriangle, radius1, radius12, 1,1);
 
         //Right triangle
@@ -783,8 +783,8 @@ class LICTest {
                                 new Point(5.0,0.0),
                                 new Point(0.0, 0.0),
                                 new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.5
-        double radius2 = 4;
-        double radius22 = 4.5;
+        double radius2 = 3;
+        double radius22 = 4;
         boolean result2 = LIC.isCondition13(rTriangle, radius2, radius22, 1,1);
 
          //Obtuse triangle
@@ -793,14 +793,14 @@ class LICTest {
                                 new Point(5.0,0.0),
                                 new Point(0.0, 0.0),
                                 new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.6
-                    double radius3 = 4;
-                    double radius32 = 4.5;
+                    double radius3 = 3;
+                    double radius32 = 4;
                     boolean result3 = LIC.isCondition13(oTriangle, radius3, radius32,1,1);
 
         
-        assertAll(  () -> assertFalse(result1),
-                    () -> assertFalse(result2),
-                    () -> assertFalse(result3));
+        assertAll(  () -> assertTrue(result1),
+                    () -> assertTrue(result2),
+                    () -> assertTrue(result3));
     }
 
     @Test
@@ -813,10 +813,10 @@ class LICTest {
                                 new Point(3.0,0.0),
                                 new Point(0.0, 0.0),
                                 new Point(1.5,2.6)}; //Should yield circumcircle radius of ~1.73
-        double radius1 = 2;
+        double radius1 = 1.5;
         double radius2 = 1.5;
         boolean result1 = LIC.isCondition13(triangle1, radius1, radius2, 1,1);
-        radius1 = 1.5;
+        radius1 = 2;
         radius2 = 2;
         boolean result2 = LIC.isCondition13(triangle1, radius1, radius2, 1,1);
 
@@ -826,10 +826,10 @@ class LICTest {
                                 new Point(5.0,0.0),
                                 new Point(0.0, 0.0),
                                 new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.5
-        radius1 = 4;
+        radius1 = 3;
         radius2 = 3;
         boolean result3 = LIC.isCondition13(triangle2, radius1, radius2, 1,1);
-        radius1 = 3;
+        radius1 = 4;
         radius2 = 4;
         boolean result4 = LIC.isCondition13(triangle2, radius1, radius2, 1,1);
 
@@ -839,10 +839,10 @@ class LICTest {
                                 new Point(5.0,0.0),
                                 new Point(0.0, 0.0),
                                 new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.6
-        radius1 = 4;
+        radius1 = 3;
         radius2 = 3;
         boolean result5 = LIC.isCondition13(triangle3, radius1, radius2, 1, 1);
-        radius1 = 3;
+        radius1 = 4;
         radius2 = 4;
         boolean result6 = LIC.isCondition13(triangle3, radius1, radius2, 1, 1);
 
