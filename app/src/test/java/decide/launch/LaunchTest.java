@@ -12,6 +12,94 @@ import static org.junit.jupiter.api.Assertions.*;
 class LaunchTest {
 
     @Test
+    @DisplayName("Launch::decide::returns expected output given valid input.")
+    public void testDecideCorrectness1() {
+
+                                // justification based on point values:
+        double length1 = 1;     // makes LIC 0,7 true
+        double radius1 = 1;     // makes LIC 1 false
+        double epsilon = 0.5;   // makes LIC 2 true (angle=180 > PI + epsilon) 
+        double area1 = 5;       // makes LIC 3 false (area=0 < area1)
+        int qPts = 1;           // makes LIC 4 false because only 1 point, so no points in more than 1 QUADS
+        int quads = 1;          // ^
+        double dist = 1;        // makes LIC 6 false because it lies on line
+        int nPts = 3;           // with length1=1 and kPts makes LIC 7 true 
+        int kPts = 1;           // ^
+        int aPts = 1;           // makes LIC 8 true
+        int bPts = 1;           // ^
+        int cPts = 1;           // makes LIC 9 true, same reasoning as LIC 2
+        int dPts = 1;           // ^
+        int ePts = 1;           // LIC 10 false, similar reasoning as LIC 3
+        int fPts = 1;           // ^
+        int gPts = 1;           // LIC 11 false, similar reasoning as LIC 5
+        double length2 = 10;    // makes LIC 12 true
+        double radius2 = 10;    // makes LIC 13 true
+        double area2 = 10;      // LIC 14 false because area1 > resulting area
+        Parameters params = new Parameters( length1, radius1, epsilon, area1, qPts,
+                                            quads, dist, nPts, kPts, aPts, 
+                                            bPts, cPts, dPts, ePts, fPts,
+                                            gPts, length2, radius2, area2);
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(2.0, 2.0),
+                            new Point(3.0, 3.0),
+                            new Point(4.0, 4.0)};
+
+        Connector[][] lcm = new Connector[15][15]; 
+
+        // set all lcm elements to NOTUSED
+        for(int i = 0; i < 15; i++) {
+            for(int j = 0; j < 15; j++) {
+                lcm[i][j] = Connector.NOTUSED;
+            }
+        }
+
+        boolean[] puv = new boolean[15];    // all elements are false
+
+        LaunchInput input = new LaunchInput(points, params, lcm, puv);
+        LaunchOutput output = Launch.decide(input);
+
+        boolean[] expected_cmv = {  true,   // LIC 0
+                                    true,   // LIC 1 
+                                    true,   // LIC 2
+                                    false,  // LIC 3 
+                                    false,  // LIC 4 
+                                    false,  // LIC 5 false because ascending x values
+                                    false,  // LIC 6
+                                    true,   // LIC 7
+                                    true,   // LIC 8
+                                    true,   // LIC 9
+                                    false,  // LIC 10
+                                    false,  // LIC 11
+                                    true,   // LIC 12
+                                    true,   // LIC 13
+                                    false   // LIC 14
+                                    };
+                                    
+        boolean[][] expected_pum = new boolean[15][15];
+        
+        // expects all PUM elements to be true because all connectors have value NOTUSED
+        for(int i = 0; i < 15; i++) {
+            for(int j = 0; j < 15; j++) {
+                expected_pum[i][j] = true;
+            }
+        }
+        
+        boolean[] expected_fuv = new boolean[15];
+        
+        // expects all fuv elements to be true as all puv values are false and all pum values are true
+        for(int i = 0; i < 15; i++) {
+            expected_fuv[i] = true;    
+        }
+
+        assertAll(  () -> assertArrayEquals(expected_cmv, output.CMV),
+                    () -> assertArrayEquals(expected_fuv, output.FUV));
+                    
+        for(int i = 0; i < 15; i++)
+            assertArrayEquals(expected_pum[i], output.PUM[i]);
+    }
+
+    @Test
     @DisplayName("Launch::calculatePUM::test ORR connector")
     /*
      * Only first element in CMV is true and all LCM elements are ORR.
