@@ -67,6 +67,10 @@ class LICTest {
         double radius1 = 1;
         double radius2 = 3;
 
+        boolean result1 = LIC.isCondition1(collinearPoints, radius1);
+        boolean result2 = LIC.isCondition1(collinearPoints, radius2);
+
+
         assertAll(  () -> assertTrue(result1),
                     () -> assertFalse(result2));
 
