@@ -112,7 +112,29 @@ class LaunchTest {
             assertArrayEquals(expected[i], actual[i]);
         }
     }
+  
     @Test
+    @DisplayName("Launch::shouldLaunch::produces correct output for appropriate input")
+    void testShouldLaunchSatisfied() {
+        boolean[] fuv = new boolean[15];
+        Arrays.fill(fuv, true);
+        assertTrue(Launch.shouldLaunch(fuv));
+    }
+
+    @Test
+    @DisplayName("Launch::shouldLaunch::produces correct output for inappropriate input")
+    void testShouldLaunchNotSatisfied() {
+        boolean[] fuv = new boolean[15];
+        assertFalse(Launch.shouldLaunch(fuv));
+        fuv[14] = true;
+        assertFalse(Launch.shouldLaunch(fuv));
+        fuv[0] = true;
+        assertFalse(Launch.shouldLaunch(fuv));
+        Arrays.fill(fuv, true);
+        fuv[0] = false;
+        assertFalse(Launch.shouldLaunch(fuv));
+    }
+
     @DisplayName("Launch::calculateFUV::produces correct output for appropriate input")
     void testCalculateFUVSatisfied() {
         boolean[][] pum = new boolean[15][15];
