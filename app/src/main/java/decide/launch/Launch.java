@@ -16,7 +16,8 @@ public class Launch {
 
         if(shouldLaunch(fuv))
             System.out.println("YES");
-        System.out.println("NO");
+        else
+            System.out.println("NO");
 
         return output;
     }
