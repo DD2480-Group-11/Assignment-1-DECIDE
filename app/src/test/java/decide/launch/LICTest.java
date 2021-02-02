@@ -302,6 +302,46 @@ class LICTest {
         Point[] points = {new Point(1.0, 1.0), new Point(1.2, 1.0), new Point(2.0, 3.0)};
         assertFalse(LIC.isCondition4(2, 1, points));
     }
+
+    @Test
+    @DisplayName("LIC::isCondition6::condition is satisfied.")
+    /**
+     * Test if isCondition6 is true when the distance meets the requirement.
+     * The number of points is set to 3, the required dist is set to 0.5, the n_points is set to 3.
+     */
+    public void testCondition6Satisfied(){
+        double dist = 0.5;
+        int n_points = 3;
+        Point[] points = {new Point(1.0,1.0), new Point(3.0,1.0),new Point(2.0,2.0)};
+        assertTrue(LIC.isCondition6(n_points,dist,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition6::condition is not satisfied.")
+    /**
+     * Test if isCondition6 is false when the distance doesn't meet the requirement.
+     * The chosed 3 points are placed into a line,so the distance becomes to zero.
+     */
+    public void testCondition6NotSatisfied(){
+        double dist = 0.5;
+        int n_points = 3;
+        Point[] points = {new Point(1.0,1.0), new Point(2.0,1.0),new Point(3.0,1.0)};
+        assertFalse(LIC.isCondition6(n_points,dist,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition6::NumOfPoints less than 3.")
+    /**
+     * Test if isCondition6 is false when the number of points less than 3.
+     */
+    public void testCondition6NumNotSatisfied(){
+        double dist = 0.5;
+        int n_points = 3;
+        Point[] points = {new Point(1.0,1.0), new Point(2.0,1.0)};
+        assertFalse(LIC.isCondition6(n_points,dist,points));
+    }
+
+
     @Test
     @DisplayName("LIC::isCondition10::condition is satisfied.")
     /**
