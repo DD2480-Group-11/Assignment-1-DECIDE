@@ -724,6 +724,64 @@ class LICTest {
         assertFalse(result);
     }
 
+    @Test
+    @DisplayName("LIC::isCondition13::LIC 13 fails if conditions is not met.")
+    //tests that isCondition13 fails if if all consecutive points can be inside the circle
+    void testCondition13NotSatisfied() {
+        //Equilateral triangle
+        Point[] eqTriangle = {  new Point(0.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(3.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(1.5,2.6)}; //Should yield circumcircle radius of ~1.73
+        double radius1 = 2;
+        double radius12 = 2.5;
+        boolean result1 = LIC.isCondition13(eqTriangle, radius1, radius12, 1,1);
+
+        //Right triangle
+        Point[] rTriangle = {   new Point(0.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(5.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.5
+        double radius2 = 4;
+        double radius22 = 4.5;
+        boolean result2 = LIC.isCondition13(rTriangle, radius2, radius22, 1,1);
+
+         //Obtuse triangle
+         Point[] oTriangle = {  new Point(1.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(5.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(0.0,5.0)}; //Should yield circumcircle radius of ~3.6
+                    double radius3 = 4;
+                    double radius32 = 4.5;
+                    boolean result3 = LIC.isCondition13(oTriangle, radius3, radius32,1,1);
+
+        
+        assertAll(  () -> assertFalse(result1),
+                    () -> assertFalse(result2),
+                    () -> assertFalse(result3));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition13::LIC 13 fails if radius2 < 0")
+    //tests that isCondition13 fails if radius2 is less than zero
+    void testCondition13radius2WithinBounds() {
+        Point[] triangle = {  new Point(0.0, 0.0),
+                                new Point(0.0, 0.0),
+                                new Point(3.0,0.0),
+                                new Point(0.0, 0.0),
+                                new Point(1.5,2.6)}; //Should yield circumcircle radius of ~1.73
+        double radius1 = 2.0;
+        double radius2 = -1.0;
+
+        boolean result = LIC.isCondition13(triangle, radius1, radius2, 1, 1);
+
+        assertFalse(result);
+    }
+    
+
 
     @Test
     @DisplayName("LIC::isCondition14::condition is satisfied.")
