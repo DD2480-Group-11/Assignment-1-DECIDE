@@ -133,6 +133,7 @@ class LaunchTest {
         Arrays.fill(fuv, true);
         fuv[0] = false;
         assertFalse(Launch.shouldLaunch(fuv));
+    }
 
     @DisplayName("Launch::calculateFUV::produces correct output for appropriate input")
     void testCalculateFUVSatisfied() {
