@@ -100,7 +100,7 @@ class LaunchTest {
     }
 
     @Test
-    @DisplayName("Launch::decide::returns expected output given valid input.")
+    @DisplayName("Launch::decide::returns expected output given valid input.Main procedure test 2")
     public void testDecideCorrectness2() {
 
                                 // justification based on point values:
@@ -138,7 +138,7 @@ class LaunchTest {
         // set all lcm elements to NOTUSED
         for(int i = 0; i < 15; i++) {
             for(int j = 0; j < 15; j++) {
-                lcm[i][j] = Connector.ORR;
+                lcm[i][j] = Connector.NOTUSED;
             }
         }
 
