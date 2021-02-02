@@ -126,4 +126,41 @@ public final class Point {
 
         return radius;
     }
+
+    /**
+     * Checks if three points are collinear (forms a line)
+     * @param a Point
+     * @param b Point
+     * @param c Point
+     * @return true if collinear
+     */
+    public static boolean collinearPoints(Point a, Point b, Point c){
+        double slopeAB = (b.y - a.y) / (b.x - a.x);
+        double slopeBC = (c.y - b.y) / (c.x - b.x);
+        double slopeAC = (c.y - a.y) / (c.x - a.x);
+        
+        if( Double.compare(slopeAB, slopeBC) == 0 || 
+            Double.compare(slopeAB, slopeAC) == 0 || 
+            Double.compare(slopeBC, slopeAC) == 0){
+                return true;
+            }
+        return false;
+    }
+
+    /**
+     * Calculates the length of a line formed by three points
+     * @param a Point
+     * @param b Point
+     * @param c Point
+     * @return the length of the line formed by the three points
+     */
+    public static double lineLength(Point a, Point b, Point c){
+        double distAB = distBetween(a, b);
+        double distAC = distBetween(a, c);
+        double distBC = distBetween(b, c);
+
+        double result = Math.max(Math.max(distAB,distAC), distBC);
+
+        return result;
+    }
 }
