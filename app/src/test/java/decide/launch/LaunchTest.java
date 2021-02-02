@@ -2,6 +2,9 @@ package decide.launch;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LaunchTest {
@@ -107,6 +110,50 @@ class LaunchTest {
 
         for(int i = 0; i < size; i++) {
             assertArrayEquals(expected[i], actual[i]);
+        }
+    }
+    @Test
+    @DisplayName("Launch::calculateFUV::produces correct output for appropriate input")
+    void testCalculateFUVSatisfied() {
+        boolean[][] pum = new boolean[15][15];
+        boolean[] puv = new boolean[15];
+        for (boolean bool : Launch.calculateFUV(pum, puv)) {
+            assertTrue(bool);
+        }
+        for (boolean[] col : pum) {
+            Arrays.fill(col, true);
+        }
+        for (boolean bool : Launch.calculateFUV(pum, puv)) {
+            assertTrue(bool);
+        }
+        Arrays.fill(puv, true);
+
+        for (boolean bool : Launch.calculateFUV(pum, puv)) {
+            assertTrue(bool);
+        }
+    }
+
+    @Test
+    @DisplayName("Launch::calculateFUV::produces correct output for inappropriate input")
+    void testCalculateFUVNotSatisfied() {
+        boolean[][] pum = new boolean[15][15];
+        boolean[] puv = new boolean[15];
+        Arrays.fill(puv, true);
+        for (boolean bool : Launch.calculateFUV(pum, puv)) {
+            assertFalse(bool);
+        }
+        for (boolean[] col : pum) {
+            Arrays.fill(col, true);
+            col[0] = false;
+        }
+        boolean[] calculateFUV = Launch.calculateFUV(pum, puv);
+        for (int i = 0; i < calculateFUV.length; i++) {
+            boolean bool = calculateFUV[i];
+            if (i == 0) {
+                assertTrue(bool);
+            } else {
+                assertFalse(bool);
+            }
         }
     }
 }
