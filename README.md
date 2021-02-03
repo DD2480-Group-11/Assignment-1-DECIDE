@@ -36,5 +36,5 @@ The tests can be found in a mirrored folder with the filename **\*Test.java**. J
 
 * Daniel Halvarsson: 
 * Hannes Sundin: shouldLaunch(), calculateFUV(), LIC cond 4, 5 and all their corresponding tests.
-* Niklas Wessman: 
+* Niklas Wessman: LIC cond 1, 8 , 13 and corresponding tests, top level test 3.
 * Yu Zhou: LIC cond 3, 6, 10, 14 and corresponding tests, top level test 2. 
