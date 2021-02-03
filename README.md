@@ -35,6 +35,6 @@ The tests can be found in a mirrored folder with the filename **\*Test.java**. J
 ## Statement of Contributions
 
 * Daniel Halvarsson: LICs 0, 2, 7, 9, 11, 12 (with tests), methods to calculate CMV and PUM (with tests), 1 top-level test
-* Hannes Sundin: 
+* Hannes Sundin: shouldLaunch(), calculateFUV(), LIC cond 4, 5 and all their corresponding tests.
 * Niklas Wessman: 
 * Yu Zhou: 

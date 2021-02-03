@@ -36,7 +36,7 @@ public final class Point {
         double numerator = dotProduct(u, v);
         double denominator = magnitude(u) * magnitude(v);
 
-        return Math.toDegrees(Math.acos((numerator / denominator)));
+        return Math.acos((numerator / denominator));
     }
 
     /**
