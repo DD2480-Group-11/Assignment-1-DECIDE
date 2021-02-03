@@ -17,8 +17,8 @@ class LaunchTest {
 
                                 // justification based on point values:
         double length1 = 1;     // makes LIC 0,7 true
-        double radius1 = 1;     // makes LIC 1 false
-        double epsilon = 0.5;   // makes LIC 2 true (angle=180 > PI + epsilon) 
+        double radius1 = 1;     // makes LIC 1 true
+        double epsilon = 0.0;   // makes LIC 2 true
         double area1 = 5;       // makes LIC 3 false (area=0 < area1)
         int qPts = 1;           // makes LIC 4 false because only 1 point, so no points in more than 1 QUADS
         int quads = 1;          // ^
@@ -366,7 +366,7 @@ class LaunchTest {
                                 // justification based on point values:
         double length1 = 1;     // makes LIC 0,7 true
         double radius1 = 1;     // makes LIC 1 true
-        double epsilon = 0.5;   // makes LIC 2 true (angle=180 > PI + epsilon) 
+        double epsilon = 0.0;   // makes LIC 2 true
         double area1 = 5;       // makes LIC 3 false (area=0 < area1)
         int qPts = 1;           // makes LIC 4 false because only 1 point, so no points in more than 1 QUADS
         int quads = 1;          // ^
@@ -395,7 +395,7 @@ class LaunchTest {
 
         boolean[] expected_cmv = {  true,   // LIC 0
                                     true,   // LIC 1 
-                                    true,   // LIC 2
+                                    true,   // LIC 2 
                                     false,  // LIC 3 
                                     false,  // LIC 4 
                                     false,  // LIC 5 false because ascending x values

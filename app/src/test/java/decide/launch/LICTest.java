@@ -173,18 +173,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition2::LIC 2 is false when condition is not satisfied.")
-    void testCondition2ConditionNotSatisfied() {
-        Point[] points = {  new Point(3.0, 1.0),
-                            new Point(0.0, 0.0),
-                            new Point(3.0, 1.15)};      // angle approx. 2.56 degrees
-        double epsilon = 2.5;                           // makes angle > (pi - epsilon)
-
-        boolean result = LIC.isCondition2(points, epsilon);
-
-        assertFalse(result);
-    }
-    @Test
     @DisplayName("LIC::isCondition3::condition is satisfied.")
     /**
      * Test if isCondition3 is true when the area meet the requirement.
@@ -712,24 +700,6 @@ class LICTest {
 
         assertTrue(result);
     }
-
-    @Test
-    @DisplayName("LIC::isCondition9::LIC 9 is false when condition is not satisfied.")
-    void testCondition9ConditionNotSatisfied() {
-        Point[] points = {  new Point(3.0, 1.0),
-                            new Point(15.0, 15.0),
-                            new Point(0.0, 0.0),
-                            new Point(15.0, 15.0),
-                            new Point(3.0, 1.15)};      // angle approx. 2.56 degrees
-        double epsilon = 2.5;                           // makes angle > (pi - epsilon)
-        int cPts = 1;
-        int dPts = 1;
-
-        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
-        
-        assertFalse(result);
-    }
-
 
     @Test
     @DisplayName("LIC::isCondition12::LIC 12 returns false if condition is not satisfied. No consecutive points greater than length1.") 
