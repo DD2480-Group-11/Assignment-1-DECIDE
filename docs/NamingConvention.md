@@ -1,4 +1,4 @@
-#Issues begin with:
+#Issues and commits begin with:
 - Implement
 - Refactor
 - Resolve
