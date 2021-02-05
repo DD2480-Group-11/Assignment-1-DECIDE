@@ -30,8 +30,8 @@ public final class LIC {
         return false;
     }
 
-    public static boolean isCondition1(Point[] points, double radius) {        
-        
+    public static boolean isCondition1(Point[] points, double radius) {
+
         for(int i = 0; i + 2 < points.length; i++){
             Point x = points[i];
             Point y = points[i+1];
@@ -46,7 +46,7 @@ public final class LIC {
             }
 
             double r = Point.circumcircleRadius(x, y, z);
-            
+
             if(r > radius){
                 return true;
             }
@@ -81,7 +81,6 @@ public final class LIC {
     }
 
     public static boolean isCondition3(double area1,Point[] points) {
-        // TODO: add appropriate method parameters
         double area;
 
         for(int i=0;i<points.length-2;i++) {
@@ -135,35 +134,34 @@ public final class LIC {
                     return true;
                 }
             }
-            // TODO: add appropriate method parameters
         }
         return false;
     }
     /**
-     * 
+     *
      * @param n_points n_points consercutive points
      * @param dist the required distance between the point and the line
      * @param points the input point array
      * @return if the LIC condition 6 is satisfied
      */
     public static boolean isCondition6(int n_points, double dist, Point[] points) {
-        int length1 = points.length; 
-        double area, dist1, dist2,length2; 
-        //area: the area of the chosed 3 points; 
+        int length1 = points.length;
+        double area, dist1, dist2,length2;
+        //area: the area of the chosed 3 points;
         //dist1: the distance between the point and the line(apply to the situation when the first and last point differs);
         //dist2: the distance between two points(apply to the situation when the first and last point coincides);
         //length2: the distance between two points in order to calculate the dist1;
         if(length1>=3 && dist>=0){
-            if(n_points>=3 && n_points<=length1){                              
+            if(n_points>=3 && n_points<=length1){
                 for(int i = 0;i < length1-n_points + 1;i++){
                     if(points[i].x != points[i+n_points-1].x || points[i].y != points[i+n_points-1].y){
-                        for(int j = i+1; j<=i+n_points-2; j++){                            
+                        for(int j = i+1; j<=i+n_points-2; j++){
                             area = Point.calculateArea(points[i], points[i+n_points-1],points[j] );
                             length2 = Point.distBetween(points[i], points[i+n_points-1]);
                             dist1 = 0;
                             if(length2 != 0){
                                 dist1 = 2*area/length2;
-                            }                            
+                            }
                             if(dist1 >dist)
                                 return true;
                         }
@@ -175,10 +173,9 @@ public final class LIC {
                         }
                     }
                 }
-                
+
             }
         }
-        // TODO: add appropriate method parameters
         return false;
     }
 
@@ -206,7 +203,7 @@ public final class LIC {
     }
 
     /**
-     * 
+     *
      * @param points array of two dimensional points
      * @param radius the radius that the points are tested against
      * @param aPts   number of separation between point one and two
@@ -221,11 +218,11 @@ public final class LIC {
 
         if(SEPARATION > points.length - 3)
             return false;
-        
+
         for(int i = 0; i + 2 + SEPARATION <= points.length-1; i++) {
            int secondPointIndex = i + aPts + 1;
            int thirdPointIndex = secondPointIndex + bPts + 1;
-           
+
             Point x = points[i];
             Point y = points[secondPointIndex];
             Point z = points[thirdPointIndex];
@@ -239,7 +236,7 @@ public final class LIC {
             }
 
             double r = Point.circumcircleRadius(x, y, z);
-            
+
             if(r > radius){
                 return true;
             }
@@ -287,7 +284,7 @@ public final class LIC {
         return false;
     }
     /**
-     * 
+     *
      * @param e_points one of the number of consecutive data points
      * @param f_points another number of consecutive data points
      * @param area1 the requirement of the area of triangle
@@ -350,13 +347,13 @@ public final class LIC {
 
             if(distBetween > length1 && distBetween < length2)
                 return true;
-        } 
+        }
 
         return false;
     }
 
     /**
-     * 
+     *
      * @param points array of two dimensional points
      * @param radius1 first radius to test points against
      * @param radius2 second redius to test points against
@@ -367,14 +364,14 @@ public final class LIC {
     public static boolean isCondition13(Point[] points, double radius1, double radius2, int aPts, int bPts) {
         if(radius2 < 0)
             return false;
-        
+
         boolean a = isCondition8(points, radius1, aPts, bPts);
         boolean b = isCondition8(points, radius2, aPts, bPts);
 
         return (a&!b);
     }
     /**
-     * 
+     *
      * @param e_points one of the number of consecutive data points
      * @param f_points another number of consecutive data points
      * @param area1 the condition is partly met when area larger than area1
