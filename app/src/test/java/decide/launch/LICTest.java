@@ -10,7 +10,9 @@ class LICTest {
 
     @Test
     @DisplayName("LIC::isCondition0::LIC 0 does not accept (length < 0).")
-    // tests that isCondition0 returns false if the length provided is less than 0
+    /**
+     * tests that isCondition0 returns false if the length provided is less than 0
+     */
     void testCondition0NegativeLength() {
         Point[] points = {  new Point(5.0, 5.0),
                             new Point(10.0, 10.0),
@@ -24,9 +26,11 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition0::condition is satisfied.")
-    // tests that isCondition0 returns true if there are two consecutive data
-    // points with a distance between eachother greater than length
+    @DisplayName("LIC::isCondition0::LIC 0 is satisfied.")
+    /**
+     * tests that isCondition0 returns true if there are two consecutive data
+     * points with a distance between eachother greater than length
+     */
     void testCondition0Satisfied() {
         // dist between last two elements approx. equals 43.36
         Point[] points = {  new Point(5.0, 5.0),
@@ -41,9 +45,11 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC:isCondition0::condition is not satisfied.")
-    // tests that isCondition0 returns false if there are not two consecutive
-    // data points with a distance between eachother greater than length
+    @DisplayName("LIC::isCondition0::LIC 0 is not satisfied.")
+    /**
+     * tests that isCondition0 returns false if there are not two consecutive
+     * data points with a distance between eachother greater than length
+     */
     void testCondition0NotSatisfied() {
         // dist between last two elements approx. equals 43.36
         Point[] points = {  new Point(5.0, 5.0),
@@ -59,7 +65,9 @@ class LICTest {
 
     @Test
     @DisplayName("LIC::isCondition1::LIC 1 works with collinear points")
-    //tests that isCondition1 works with collinear points
+    /**
+     * tests that isCondition1 works with collinear points
+     */
     void testCondition1CollinearPoints() {
         Point[] collinearPoints = { new Point(0.0, 0.0),
                                     new Point(1.1, 1.1),
@@ -78,7 +86,9 @@ class LICTest {
 
     @Test
     @DisplayName("LIC::isCondition1::LIC 1 fails if condition is not met.")
-    //tests that isCondition1 fails if if all consecutive points can be inside the circle
+    /**
+     * tests that isCondition1 fails if if all consecutive points can be inside the circle
+     */
     void testCondition1NotSatisfied() {
         //Equilateral triangle
         Point[] eqTriangle = {  new Point(0.0, 0.0),
@@ -107,9 +117,10 @@ class LICTest {
                     () -> assertFalse(result3));
     }
 
-
     @DisplayName("LIC::isCondition2::LIC 2 fails if outside range (0 <= epsilon < pi)")
-    //tests that isCondition2 fails if epsilon value outside of range
+    /**
+     * tests that isCondition2 fails if epsilon value outside of range
+     */
     void testCondition2Range() {
         Point[] points = {new Point(0.0, 0.0)};
         double negEpsilon = -1.0;
@@ -173,7 +184,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition3::condition is satisfied.")
+    @DisplayName("LIC::isCondition3::LIC 3 is satisfied.")
     /**
      * Test if isCondition3 is true when the area meet the requirement.
      */
@@ -184,7 +195,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition3::condition is not satisfied.")
+    @DisplayName("LIC::isCondition3::LIC 3 is not satisfied.")
     /**
      * Test if isCondition3 is false when the area less than the requirement.
      */
@@ -195,8 +206,8 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition4::condition is not satisfied.")
-    /*
+    @DisplayName("LIC::isCondition4::LIC 4 is not satisfied.")
+    /**
      * Tests whether isCondition4() is false when 3 consecutive points do not belong in the appropriate amount
      * quadrants ( in this case all points are in quadrant 1, which is not more than 1 quadrant according to
      * specification.
@@ -207,8 +218,8 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition4::condition is satisfied.")
-    /*
+    @DisplayName("LIC::isCondition4::LIC 4 is satisfied.")
+    /**
      * Tests whether isCondition4() is true when 3 consecutive points belong in the appropriate amount
      * quadrants (more than one quadrant in this case).
      */
@@ -289,8 +300,8 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition5::condition is satisfied.")
-    /*
+    @DisplayName("LIC::isCondition5::LIC 5 is satisfied.")
+    /**
      * Tests whether isCondition5() is true when 2 consecutive points where there is a negative difference
      * between X[i] and X[j], j = i -1
      * This also checks that there is no off by one error
@@ -299,8 +310,9 @@ class LICTest {
         Point[] points = {new Point(4.0, 1.0), new Point(3.0, 0.0), new Point(2.0, 0.0)};
         assertTrue(LIC.isCondition5(points));
     }
+
     @Test
-    @DisplayName("LIC::isCondition5::condition is not satisfied.")
+    @DisplayName("LIC::isCondition5::LIC 5 is not satisfied.")
     /*
      * Tests whether isCondition5() is false when there are no consecutive points with negative difference
      * between X[i] and X[j], j = i -1
@@ -311,7 +323,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition6::condition is satisfied.")
+    @DisplayName("LIC::isCondition6::LIC 6 is satisfied.")
     /**
      * Test if isCondition6 is true when the distance meets the requirement.
      * The number of points is set to 3, the required dist is set to 0.5, the n_points is set to 3.
@@ -324,7 +336,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition6::condition is not satisfied.")
+    @DisplayName("LIC::isCondition6::LIC 6 is not satisfied.")
     /**
      * Test if isCondition6 is false when the distance doesn't meet the requirement.
      * The chosed 3 points are placed into a line,so the distance becomes to zero.
@@ -337,7 +349,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition6::NumOfPoints less than 3.")
+    @DisplayName("LIC::isCondition6::LIC 6 NumOfPoints less than 3.")
     /**
      * Test if isCondition6 is false when the number of points less than 3.
      */
@@ -350,7 +362,9 @@ class LICTest {
 
     @Test
     @DisplayName("LIC::isCondition8::LIC 8 fails if condition is not met.")
-    //tests that isCondition8 fails if if all consecutive points can be inside the circle
+    /**
+     * tests that isCondition8 fails if if all consecutive points can be inside the circle
+     */
     void testCondition8NotSatisfied() {
         //Equilateral triangle
         Point[] eqTriangle = {  new Point(0.0, 0.0),
@@ -422,53 +436,6 @@ class LICTest {
 
     }
 
-
-    @Test
-    @DisplayName("LIC::isCondition10::condition is satisfied.")
-    /**
-     * Test if isCondition10 is true when the area meet the requirement.
-     */
-    public void testCondition10Satisfied(){
-
-        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0),new Point(3.0,3.0)};
-        assertEquals(true, LIC.isCondition10(1,1,3.0,points));
-    }
-
-    @Test
-    @DisplayName("LIC::isCondition10::condition is not satisfied.")
-    /**
-     * Test if isCondition10 is false when the area less than the requirement.
-     */
-    public void testCondition10NotSatisfied(){
-
-        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0),new Point(3.0,3.0)};
-        assertEquals(false, LIC.isCondition10(1,1,5.0,points));
-    }
-
-    @Test
-    @DisplayName("LIC::isCondition10::NumOfPoints less than 5.")
-    /**
-     * Test if isCondition10 is false when the number of points less than 5.
-     */
-    public void testCondition10NumNotSatisfied(){
-
-        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0)};
-        assertEquals(false, LIC.isCondition10(1,1,3.0,points));
-    }
-
-    @Test
-    @DisplayName("LIC::isCondition9::LIC 9 fails if outside range (0 <= epsilon < pi)")
-    //tests that isCondition9 fails if epsilon value outside of range
-    void testCondition9Range() {
-        Point[] points = {new Point(0.0, 0.0)};
-        double negEpsilon = -1.0;
-        double outOfMaxRangeEpsilon = 3.5;
-
-        assertAll(  "Assert within range (0 <= epsilon < pi)",
-                    () -> assertFalse(LIC.isCondition9(points, negEpsilon, 1, 1)),
-                    () -> assertFalse(LIC.isCondition9(points, outOfMaxRangeEpsilon, 1, 1)));
-    }
-
     @Test
     @DisplayName("LIC::isCondition9::LIC 9 returns false if either C_PTS and D_PTS are (< 1).")
     void testCondition9PassedPointsRequirements() {
@@ -498,6 +465,161 @@ class LICTest {
         int dPts = 1;
 
         boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 fails if outside range (0 <= epsilon < pi)")
+    //tests that isCondition9 fails if epsilon value outside of range
+    void testCondition9Range() {
+        Point[] points = {new Point(0.0, 0.0)};
+        double negEpsilon = -1.0;
+        double outOfMaxRangeEpsilon = 3.5;
+
+        assertAll(  "Assert within range (0 <= epsilon < pi)",
+                    () -> assertFalse(LIC.isCondition9(points, negEpsilon, 1, 1)),
+                    () -> assertFalse(LIC.isCondition9(points, outOfMaxRangeEpsilon, 1, 1)));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 fails when second point coincides with vertex.")
+    void testCondition9AngleUndefined2() {
+        Point[] points = {  new Point(0.0, 0.0),   
+                            new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(0.0, 0.0),
+                            new Point(1.0, 1.0)};   // coincides with vertex
+        double epsilon = 0.0;
+        int cPts = 1;
+        int dPts = 1;
+
+        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 is true when condition (angle < (pi - epsilon)) is satisfied")
+    void testCondition9ConditionSatisfied1() {
+        Point[] points = {  new Point(3.0, 1.0),
+                            new Point(15.0, 15.0),
+                            new Point(0.0, 0.0),
+                            new Point(15.0, 15.0),
+                            new Point(3.0, 1.15)};    // angle approx. 2.56 degrees
+        double epsilon = 0.1;
+        int cPts = 1;
+        int dPts = 1;
+
+        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
+
+        assertTrue(true);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition9::LIC 9 is true when condition (angle > (pi + epsilon)) is satisfied")
+    void testCondition9ConditionSatisfied2() {
+        Point[] points = {  new Point(2.0, 2.0),
+                            new Point(15.0, 15.0),
+                            new Point(15.0, 3.0),
+                            new Point(15.0, 15.0),
+                            new Point(5.0, 8.0)};    // angle approx. 59 degrees
+        double epsilon = 2.5;
+        int cPts = 1;
+        int dPts = 1;
+
+        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
+
+        assertTrue(result);
+    }
+
+
+    @Test
+    @DisplayName("LIC::isCondition10::LIC 10 is satisfied.")
+    /**
+     * Test if isCondition10 is true when the area meet the requirement.
+     */
+    public void testCondition10Satisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0),new Point(3.0,3.0)};
+        assertEquals(true, LIC.isCondition10(1,1,3.0,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition10::LIC 10 is not satisfied.")
+    /**
+     * Test if isCondition10 is false when the area less than the requirement.
+     */
+    public void testCondition10NotSatisfied(){
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0),new Point(3.0,3.0)};
+        assertEquals(false, LIC.isCondition10(1,1,5.0,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition10::NumOfPoints less than 5.")
+    /**
+     * Test if isCondition10 is false when the number of points less than 5.
+     */
+    public void testCondition10NumNotSatisfied(){
+
+        Point[] points = {new Point(1.0,1.0), new Point(1.0,1.0),new Point(5.0,1.0), new Point(1.0,1.0)};
+        assertEquals(false, LIC.isCondition10(1,1,3.0,points));
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition11::LIC 11 returns false if (G_PTS < 1).")
+    public void testCondition11MinSeparationRequirement() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(2.0, 2.0)};
+        int gPts = 0;
+
+        boolean result = LIC.isCondition11(points, gPts);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition11::LIC 11 returns false if (G_PTS > (NUMPOINTS-2)).")
+    public void testCondition11MaxSeparationRequirement() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(2.0, 2.0)};
+        int gPts = points.length-1;
+
+        boolean result = LIC.isCondition11(points, gPts);
+
+        assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition11::LIC 11 returns true if condition is satisfied.")
+    /** 
+     * returns true if two consecutive points satisfy: the latter point has a larger x value than the first. 
+     */
+    public void testCondition11Satisfied() {
+        Point[] points = {  new Point(2.0, 2.0),
+                            new Point(1.0, 1.0),
+                            new Point(0.0, 0.0)};
+        int gPts = 1;
+
+        boolean result = LIC.isCondition11(points, gPts);
+
+        assertTrue(result);
+    }
+
+    @Test
+    @DisplayName("LIC::isCondition11::LIC 11 returns false if condition is not satisfied.")
+    /** 
+     * returns true if two consecutive points do not satisfy: the latter point has a larger x value than the first. 
+     */
+    public void testCondition11NotSatisfied() {
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(2.0, 2.0)};
+        int gPts = 1;
+
+        boolean result = LIC.isCondition11(points, gPts);
 
         assertFalse(result);
     }
@@ -547,23 +669,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition9::LIC 9 fails when second point coincides with vertex.")
-    void testCondition9AngleUndefined2() {
-        Point[] points = {  new Point(0.0, 0.0),   
-                            new Point(0.0, 0.0),
-                            new Point(1.0, 1.0),
-                            new Point(0.0, 0.0),
-                            new Point(1.0, 1.0)};   // coincides with vertex
-        double epsilon = 0.0;
-        int cPts = 1;
-        int dPts = 1;
-
-        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
-
-        assertFalse(result);
-    }
-
-    @Test
     @DisplayName("LIC::isCondition12::LIC 12 returns false if (K_PTS < 1).")
     public void testCondition12MinSeparationRequirement() {
         Point[] points = {  new Point(1.0, 1.0),
@@ -574,98 +679,6 @@ class LICTest {
         int length2 = 2;
 
         boolean result = LIC.isCondition12(points, kPts, length1, length2);
-
-        assertFalse(result);
-    }
-
-    @Test
-    @DisplayName("LIC::isCondition9::LIC 9 is true when condition (angle < (pi - epsilon)) is satisfied")
-    void testCondition9ConditionSatisfied1() {
-        Point[] points = {  new Point(3.0, 1.0),
-                            new Point(15.0, 15.0),
-                            new Point(0.0, 0.0),
-                            new Point(15.0, 15.0),
-                            new Point(3.0, 1.15)};    // angle approx. 2.56 degrees
-        double epsilon = 0.1;
-        int cPts = 1;
-        int dPts = 1;
-
-        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
-
-        assertTrue(true);
-    }
-
-    @Test
-    @DisplayName("LIC::isCondition9::LIC 9 is true when condition (angle > (pi + epsilon)) is satisfied")
-    void testCondition9ConditionSatisfied2() {
-        Point[] points = {  new Point(2.0, 2.0),
-                            new Point(15.0, 15.0),
-                            new Point(15.0, 3.0),
-                            new Point(15.0, 15.0),
-                            new Point(5.0, 8.0)};    // angle approx. 59 degrees
-        double epsilon = 2.5;
-        int cPts = 1;
-        int dPts = 1;
-
-        boolean result = LIC.isCondition9(points, epsilon, cPts, dPts);
-
-        assertTrue(result);
-    }
-
-    @Test
-    @DisplayName("LIC::isCondition11::LIC 11 returns false if (G_PTS < 1).")
-    public void testCondition11MinSeparationRequirement() {
-        Point[] points = {  new Point(0.0, 0.0),
-                            new Point(1.0, 1.0),
-                            new Point(2.0, 2.0)};
-        int gPts = 0;
-
-        boolean result = LIC.isCondition11(points, gPts);
-
-        assertFalse(result);
-    }
-
-    @Test
-    @DisplayName("LIC::isCondition11::LIC 11 returns false if (G_PTS > (NUMPOINTS-2)).")
-    public void testCondition11MaxSeparationRequirement() {
-        Point[] points = {  new Point(0.0, 0.0),
-                            new Point(1.0, 1.0),
-                            new Point(2.0, 2.0)};
-        int gPts = points.length-1;
-
-        boolean result = LIC.isCondition11(points, gPts);
-
-        assertFalse(result);
-    }
-
-    @Test
-    @DisplayName("LIC::isCondition11::LIC 11 returns true if condition is satisfied.")
-    /*
-     * returns true if two consecutive points satisfy: the latter point has a larger x value than the first. 
-     */
-    public void testCondition11Satisfied() {
-        Point[] points = {  new Point(2.0, 2.0),
-                            new Point(1.0, 1.0),
-                            new Point(0.0, 0.0)};
-        int gPts = 1;
-
-        boolean result = LIC.isCondition11(points, gPts);
-
-        assertTrue(result);
-    }
-
-    @Test
-    @DisplayName("LIC::isCondition11::LIC 11 returns false if condition is not satisfied.")
-    /*
-     * returns true if two consecutive points do not satisfy: the latter point has a larger x value than the first. 
-     */
-    public void testCondition11NotSatisfied() {
-        Point[] points = {  new Point(0.0, 0.0),
-                            new Point(1.0, 1.0),
-                            new Point(2.0, 2.0)};
-        int gPts = 1;
-
-        boolean result = LIC.isCondition11(points, gPts);
 
         assertFalse(result);
     }
@@ -735,7 +748,9 @@ class LICTest {
 
     @Test
     @DisplayName("LIC::isCondition13::LIC 13 fails if both conditions is not met.")
-    //tests that isCondition13 fails if if all consecutive points can be inside the circle
+    /**
+     * tests that isCondition13 fails if if all consecutive points can be inside the circle
+     */
     void testCondition13NotSatisfied() {
         //Equilateral triangle
         Point[] eqTriangle = {  new Point(0.0, 0.0),
@@ -775,7 +790,9 @@ class LICTest {
 
     @Test
     @DisplayName("LIC::isCondition13::LIC 13 fails if one of the conditions is not met.")
-    //tests that isCondition13 fails if only one of the consecutive points can be inside the circle
+    /**
+     * tests that isCondition13 fails if only one of the consecutive points can be inside the circle
+     */
     void testCondition13SingleNotSatisfied() {
         //Equilateral triangle
         Point[] triangle1 = {  new Point(0.0, 0.0),
@@ -827,7 +844,9 @@ class LICTest {
 
     @Test
     @DisplayName("LIC::isCondition13::LIC 13 fails if radius2 < 0")
-    //tests that isCondition13 fails if radius2 is less than zero
+    /**
+     * tests that isCondition13 fails if radius2 is less than zero
+     */
     void testCondition13radius2WithinBounds() {
         Point[] triangle = {  new Point(0.0, 0.0),
                                 new Point(0.0, 0.0),
@@ -841,11 +860,9 @@ class LICTest {
 
         assertFalse(result);
     }
-    
-
 
     @Test
-    @DisplayName("LIC::isCondition14::condition is satisfied.")
+    @DisplayName("LIC::isCondition14::LIC 14 is satisfied.")
     /**
      * Test if isCondition10 is true when both area1 and area2 met the requirement.
      * the 1,3,5 points form a triangle with the area of 4; the 2,4,6 points form a triangle with the area of 0.5. 
@@ -858,7 +875,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition14::condition is not satisfied.")
+    @DisplayName("LIC::isCondition14::LIC 14 is not satisfied.")
     /**
      * Test if isCondition14 is false when the area1 mets the requirement but area2 does not met the requirements.
      * There are 5 points in the array. So just 1,3,5 forms the triangle and meets the requirement: area1.
@@ -870,7 +887,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition14::NumOfPoints less than 5.")
+    @DisplayName("LIC::isCondition14::LIC 14 NumOfPoints less than 5.")
     /**
      * Test if isCondition14 is false when the number of points is less than 5.
      */
@@ -881,7 +898,7 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("LIC::isCondition14::Area 2 less than 0.")
+    @DisplayName("LIC::isCondition14::LIC 14 Area 2 less than 0.")
     /**
      * Test if isCondition14 is false when the area2 is less than 0.
      */
