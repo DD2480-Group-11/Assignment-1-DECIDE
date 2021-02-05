@@ -3,14 +3,55 @@
  */
 package decide;
 
-import decide.launch.Launch;
-import decide.launch.LaunchInput;
-import decide.launch.LaunchOutput;
+import decide.launch.*;
+import decide.utils.Point;
 
 public class App {
     
     public static void main(String[] args) {
-        LaunchInput input = new LaunchInput(null, null, null, null);   // temp value
+
+                                // justification based on point values:
+        double length1 = 1;     // makes LIC 0,7 true
+        double radius1 = 1;     // makes LIC 1 true
+        double epsilon = 0.0;   // makes LIC 2 true
+        double area1 = 5;       // makes LIC 3 false (area=0 < area1)
+        int qPts = 1;           // makes LIC 4 false because only 1 point, so no points in more than 1 QUADS
+        int quads = 1;          // ^
+        double dist = 1;        // makes LIC 6 false because it lies on line
+        int nPts = 3;           // with length1=1 and kPts makes LIC 7 true 
+        int kPts = 1;           // ^
+        int aPts = 1;           // makes LIC 8 true
+        int bPts = 1;           // ^
+        int cPts = 1;           // makes LIC 9 true, same reasoning as LIC 2
+        int dPts = 1;           // ^
+        int ePts = 1;           // LIC 10 false, similar reasoning as LIC 3
+        int fPts = 1;           // ^
+        int gPts = 1;           // LIC 11 false, similar reasoning as LIC 5
+        double length2 = 10;    // makes LIC 12 true
+        double radius2 = 10;    // makes LIC 13 true
+        double area2 = 10;      // LIC 14 false because area1 > resulting area
+        Parameters params = new Parameters( length1, radius1, epsilon, area1, qPts,
+                                            quads, dist, nPts, kPts, aPts, 
+                                            bPts, cPts, dPts, ePts, fPts,
+                                            gPts, length2, radius2, area2);
+        Point[] points = {  new Point(0.0, 0.0),
+                            new Point(1.0, 1.0),
+                            new Point(2.0, 2.0),
+                            new Point(3.0, 3.0),
+                            new Point(4.0, 4.0)};
+
+        Connector[][] lcm = new Connector[15][15]; 
+
+        // set all lcm elements to NOTUSED
+        for(int i = 0; i < 15; i++) {
+            for(int j = 0; j < 15; j++) {
+                lcm[i][j] = Connector.NOTUSED;
+            }
+        }
+
+        boolean[] puv = new boolean[15];    // all elements are false
+
+        LaunchInput input = new LaunchInput(points, params, lcm, puv);
         LaunchOutput output = Launch.decide(input);
     }
 }
