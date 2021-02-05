@@ -1,6 +1,4 @@
-package decide.launch;
-
-import decide.utils.Point;
+package decide.utils;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
